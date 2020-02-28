@@ -15,6 +15,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainMenuRouteController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView start() {
-        return (new ModelAndView("mainMenu"));
+        String user = public java.lang.String getRemoteUser();
+        if (user!= null) {
+            return (new ModelAndView("mainMenu"));
+        }
+        else {
+            return (new ModelAndView("redirect:/signIn"));
+        }
     }
 }
