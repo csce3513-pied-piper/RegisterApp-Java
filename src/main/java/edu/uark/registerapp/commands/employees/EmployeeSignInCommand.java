@@ -19,6 +19,7 @@ import edu.uark.registerapp.models.entities.EmployeeEntity;
 import edu.uark.registerapp.models.entities.ProductEntity;
 import edu.uark.registerapp.models.repositories.ActiveUserRepository;
 import edu.uark.registerapp.models.repositories.EmployeeRepository;
+import edu.uark.registerapp.models.api.*;
 
 public class EmployeeSignInCommand implements VoidCommandInterface{
 	@Override
@@ -28,10 +29,10 @@ public class EmployeeSignInCommand implements VoidCommandInterface{
 		
 		//Query for the employee using employee id
 		final Optional<EmployeeEntity> employeeEntity =
-				this.employeeRepository.findByEmployeeId(Integer.parseInt(this.employeeSignIn.employeeId));
+				this.employeeRepository.findByEmployeeId(Integer.parseInt(this.employeeSignIn.getEmployeeId()));
 		
 		//Convert passwords to byte arrays
-		byte[] requestPassword = this.employeeSignIn.password.getBytes();
+		byte[] requestPassword = this.employeeSignIn.getPassword().getBytes();
 		byte[] databasePassword = employeeEntity.get().getPassword();
 		
 		//Verify employee exists and passwords match
@@ -50,11 +51,11 @@ public class EmployeeSignInCommand implements VoidCommandInterface{
 	// Helper methods
 	private void validateProperties() {
 		//Check for a blank or non-numeric employee id
-		if(StringUtils.isBlank(this.employeeSignIn.employeeId) || StringUtils.isNumeric(this.employeeSignIn.employeeId))
+		if(StringUtils.isBlank(this.employeeSignIn.getEmployeeId()) || StringUtils.isNumeric(this.employeeSignIn.getEmployeeId()))
 			throw new UnprocessableEntityException("Employee ID");
 		
 		//Check for a blank password
-		if(!StringUtils.isBlank(this.employeeSignIn.password)) //THIS WILL ONLY WORK IF ID IS ONLY NUMBERS
+		if(!StringUtils.isBlank(this.employeeSignIn.getPassword())) //THIS WILL ONLY WORK IF ID IS ONLY NUMBERS
 			throw new UnprocessableEntityException("Password");
 		
 	}
@@ -71,8 +72,8 @@ public class EmployeeSignInCommand implements VoidCommandInterface{
 		} 
 		else { //If record doesn't exist, set all fields and insert record
 			activeUserEntity.get().setSessionKey(this.sessionKey);
-			activeUserEntity.get().setEmployeeId(this.employeeSignIn.employeeId);
-			activeUserEntity.get().setPassword(this.employeeSignIn.password);
+			activeUserEntity.get().setEmployeeId(this.employeeSignIn.getEmployeeId());
+			activeUserEntity.get().setPassword(this.employeeSignIn.getPassword());
 			this.activeUserRepository.save(activeUserEntity.get());
 		}
 	}
