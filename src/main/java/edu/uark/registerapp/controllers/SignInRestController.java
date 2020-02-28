@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import edu.uark.registerapp.commands.activeUsers.ActiveUserDeleteCommand;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.ApiResponse;
 
@@ -19,6 +20,9 @@ public class SignInRestController extends BaseRestController {
 	) {
 
 		// TODO: Sign out the user associated with request.getSession().getId()
+		ActiveUserDeleteCommand activeUserDelete = new ActiveUserDeleteCommand();
+		activeUserDelete.setSessionKey(request.getSession().getId());
+		activeUserDelete.execute();
 
 		return (new ApiResponse())
 			.setRedirectUrl(ViewNames.SIGN_IN.getRoute());
