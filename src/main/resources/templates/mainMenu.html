@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -105,9 +105,14 @@
     }
 
     function error() {
-        alert("ERROR!");
+        document.getElementById("err").style.marginLeft = "40px";
+        document.getElementById("err").style.color = "#f44336";
+        document.getElementById("err").style.fontSize = "large";
+        document.getElementById("err").innerHTML = "ERROR!";
     }
 </script>
+
+<p id="err"></p>
 
 <div class="transbox">
     <h1>Main Menu</h1>
