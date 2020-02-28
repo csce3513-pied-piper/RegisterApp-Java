@@ -166,3 +166,8 @@ function getErrorMessageDisplayElement() {
 	return document.getElementById("errorMessage");
 }
 // End getters and setters
+
+function exit() {
+    ajaxDelete();
+    location.replace(location.origin + '/Sign_In');
+}
