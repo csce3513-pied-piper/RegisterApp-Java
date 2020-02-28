@@ -15,7 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class MainMenuRouteController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView start() {
-        String user = getRemoteUser();
+        String user = request.getRemoteUser();
         if (user!= null) {
             return (new ModelAndView("mainMenu"));
         }
