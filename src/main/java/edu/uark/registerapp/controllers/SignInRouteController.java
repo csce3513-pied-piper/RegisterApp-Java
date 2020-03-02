@@ -22,7 +22,7 @@ import edu.uark.registerapp.models.api.EmployeeSignIn;
 import edu.uark.registerapp.models.api.Product;
 
 @Controller
-@RequestMapping(value = "/")
+@RequestMapping(value = "/signIn")
 public class SignInRouteController extends BaseRouteController {
 	// TODO: Route for initial page load
 	@RequestMapping(method = RequestMethod.GET)
