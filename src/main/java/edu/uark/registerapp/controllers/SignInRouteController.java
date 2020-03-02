@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,13 +28,16 @@ public class SignInRouteController extends BaseRouteController {
 	// TODO: Route for initial page load
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(@RequestParam Map<String,String> allParams) {
-		/*ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
+		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
 		try {
 			querySearch.execute(); 
 		}
 		catch(NotFoundException e){
-			return (new ModelAndView("redirect:/employeeDetail.html"));
-		}*/
+			ModelMap model = new ModelMap();
+			model.addAttribute("attribute", "redirectWithRedirectPrefix");
+        	return new ModelAndView("redirect:/employeeDetail", model);
+			//return (new ModelAndView("redirect:/employeeDetail.html"));
+		}
 			return (new ModelAndView("signIn"));
 	}
 
@@ -54,8 +58,8 @@ public class SignInRouteController extends BaseRouteController {
 		//  to sign in the user
 		signInCommand.setEmployeeSignIn(employeeSignIn);
 		signInCommand.setSessionKey(request.getRequestedSessionId());
-		return new ModelAndView("signIn");
-			//REDIRECT_PREPEND.concat(
-				//ViewNames.MAIN_MENU.getRoute()));
+		return new ModelAndView(
+			REDIRECT_PREPEND.concat(
+				ViewNames.MAIN_MENU.getRoute()));
 	}
 }
