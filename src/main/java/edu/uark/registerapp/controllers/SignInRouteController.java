@@ -35,7 +35,7 @@ public class SignInRouteController extends BaseRouteController {
 			return (new ModelAndView(REDIRECT_PREPEND.concat(
 					ViewNames.EMPLOYEE_DETAIL.getRoute())));
 		}*/
-			return (new ModelAndView(ViewNames.SIGN_IN.getRoute()));
+			return (new ModelAndView("signIn"));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
