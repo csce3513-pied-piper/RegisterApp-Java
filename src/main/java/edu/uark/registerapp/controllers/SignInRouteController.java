@@ -40,7 +40,7 @@ public class SignInRouteController extends BaseRouteController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-	public ModelAndView performSignIn(EmployeeSignIn employeeSignin, HttpServletRequest request)
+	public ModelAndView performSignIn(EmployeeSignIn employeeSignIn, HttpServletRequest request)
 		// TODO: Define an object that will represent the sign in request and add it as a parameter here
 	 {
 		EmployeeSignInCommand signInCommand = new EmployeeSignInCommand();
@@ -55,7 +55,8 @@ public class SignInRouteController extends BaseRouteController {
 		// TODO: Use the credentials provided in the request body
 		//  and the "id" property of the (HttpServletRequest)request.getSession() variable
 		//  to sign in the user
-
+		signInCommand.setEmployeeSignIn(employeeSignIn);
+		signInCommand.setSessionKey(request.getRequestedSessionId());
 		return new ModelAndView(
 			REDIRECT_PREPEND.concat(
 				ViewNames.MAIN_MENU.getRoute()));
