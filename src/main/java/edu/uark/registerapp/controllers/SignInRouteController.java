@@ -29,13 +29,13 @@ public class SignInRouteController extends BaseRouteController {
 	// TODO: Route for initial page load
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(@RequestParam Map<String,String> allParams) {
-		/*ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
+		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
 		try {
 			querySearch.execute(); 
 		}
-		catch(NotFoundException e){*/
-		int x = 1;
-		if(x == 1) {
+		catch(NotFoundException e){
+		/*int x = 1;
+		if(x == 1) {*/
 			return (new ModelAndView("redirect:/employeeDetail"));
 		}
 			return (new ModelAndView("signIn"));
