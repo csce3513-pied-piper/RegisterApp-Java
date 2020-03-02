@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,7 @@ import edu.uark.registerapp.models.api.Product;
 public class SignInRouteController extends BaseRouteController {
 	// TODO: Route for initial page load
 	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping("signIn")
 	public ModelAndView start(@RequestParam Map<String,String> allParams) {
 		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
 		try {
