@@ -36,7 +36,7 @@ public class SignInRouteController extends BaseRouteController {
 		}
 		catch(NotFoundException e){
 			ModelMap model = new ModelMap();
-			model.addAttribute("attribute", "redirectWithRedirectPrefix");
+			model.addAttribute("attribute", "signIn");
         	return new ModelAndView("redirect:/employeeDetail", model);
 			//return (new ModelAndView("redirect:/employeeDetail.html"));
 		}
