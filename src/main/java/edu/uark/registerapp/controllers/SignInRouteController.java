@@ -54,8 +54,8 @@ public class SignInRouteController extends BaseRouteController {
 		//  to sign in the user
 		signInCommand.setEmployeeSignIn(employeeSignIn);
 		signInCommand.setSessionKey(request.getRequestedSessionId());
-		return new ModelAndView(
-			REDIRECT_PREPEND.concat(
-				ViewNames.MAIN_MENU.getRoute()));
+		return new ModelAndView("signIn");
+			//REDIRECT_PREPEND.concat(
+				//ViewNames.MAIN_MENU.getRoute()));
 	}
 }
