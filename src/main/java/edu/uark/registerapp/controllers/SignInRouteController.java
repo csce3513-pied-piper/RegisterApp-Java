@@ -25,16 +25,18 @@ import edu.uark.registerapp.models.api.Product;
 @RequestMapping(value = "/")
 public class SignInRouteController extends BaseRouteController {
 	// TODO: Route for initial page load
-	@RequestMapping(value = "/EmployeeSignIn", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(@RequestParam Map<String,String> allParams) {
 		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
 		try {
 			querySearch.execute(); 
 		}
 		catch(NotFoundException e){
-			return (new ModelAndView("employeeDetail"));
+			return (new ModelAndView(REDIRECT_PREPEND.concat(
+					ViewNames.EMPLOYEE_DETAIL.getRoute())));
 		}
-			return (new ModelAndView("Sign_In"));
+			return (new ModelAndView(REDIRECT_PREPEND.concat(
+					ViewNames.SIGN_IN.getRoute())));
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
@@ -47,7 +49,8 @@ public class SignInRouteController extends BaseRouteController {
 		}
 		catch(NotFoundException e) {
 			System.out.println("Sign In was not successfull");
-			return (new ModelAndView("Sign_in"));
+			return (new ModelAndView(REDIRECT_PREPEND.concat(
+					ViewNames.SIGN_IN.getRoute())));
 		}
 		// TODO: Use the credentials provided in the request body
 		//  and the "id" property of the (HttpServletRequest)request.getSession() variable
