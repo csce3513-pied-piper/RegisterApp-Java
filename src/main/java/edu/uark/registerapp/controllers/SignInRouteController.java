@@ -28,18 +28,14 @@ import edu.uark.registerapp.models.api.Product;
 public class SignInRouteController extends BaseRouteController {
 	// TODO: Route for initial page load
 	@RequestMapping(method = RequestMethod.GET)
-	@GetMapping("/")
 	public ModelAndView start(@RequestParam Map<String,String> allParams) {
-		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
+		/*ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
 		try {
 			querySearch.execute(); 
 		}
 		catch(NotFoundException e){
-			ModelMap model = new ModelMap();
-			model.addAttribute("attribute", "/");
-        	return new ModelAndView("redirect:/employeeDetail", model);
-			//return (new ModelAndView("redirect:/employeeDetail.html"));
-		}
+			return (new ModelAndView("redirect:/employeeDetail.html"));
+		}*/
 			return (new ModelAndView("signIn"));
 	}
 
