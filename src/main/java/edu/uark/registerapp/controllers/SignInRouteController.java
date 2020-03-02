@@ -27,14 +27,14 @@ public class SignInRouteController extends BaseRouteController {
 	// TODO: Route for initial page load
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(@RequestParam Map<String,String> allParams) {
-		/*ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
+		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
 		try {
 			querySearch.execute(); 
 		}
 		catch(NotFoundException e){
 			return (new ModelAndView(REDIRECT_PREPEND.concat(
 					ViewNames.EMPLOYEE_DETAIL.getRoute())));
-		}*/
+		}
 			return (new ModelAndView("signIn"));
 	}
 
@@ -48,7 +48,7 @@ public class SignInRouteController extends BaseRouteController {
 		}
 		catch(NotFoundException e) {
 			System.out.println("Sign In was not successfull");
-			return (new ModelAndView(ViewNames.SIGN_IN.getRoute()));
+			return (new ModelAndView("signIn"));
 		}
 		// TODO: Use the credentials provided in the request body
 		//  and the "id" property of the (HttpServletRequest)request.getSession() variable
