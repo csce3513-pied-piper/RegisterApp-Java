@@ -6,9 +6,9 @@ import edu.uark.registerapp.commands.VoidCommandInterface;
 import edu.uark.registerapp.commands.exceptions.NotFoundException;
 import edu.uark.registerapp.models.repositories.EmployeeRepository;
 
-public class ActiveEmployeeExistsQuery {//implements VoidCommandInterface{
+public class ActiveEmployeeExistsQuery implements VoidCommandInterface{
 	
-	//@Override
+	@Override
 	public void execute() {
 		boolean isActive = false;
 		//Query employee database for any active users
