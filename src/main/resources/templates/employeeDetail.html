@@ -42,7 +42,29 @@
 							<input id="employeeEmployeeId" type="text" th:value="${!employee.isEmpty} ? ${employee.employeeId} : ''" class="update" disabled />
 						</td>
 					</tr>
-					<!-- TODO: Other employee inputs -->
+					<tr class="nothidden">
+						<td>First Name:</td>
+						<td>
+							<input type="text" id="firstname" name="firstname" >
+						</td>
+						<td>Last Name:</td>
+						<td>
+							<input type="text" id="lastname" name="lastname" >
+						</td>
+						<td>Password:</td>
+						<td>
+							<input type="text" id="password" name="password" >
+						</td>
+						<td>Confirm Password:</td>
+						<td>
+							<input type="text" id="cpassword" name="cpassword" >
+						</td>
+					</tr>
+					<select id="type">
+						<option value="cashier">Cashier</option>
+						<option value="shiftmanager">Shift Manager</option>
+						<option value="generalmanager">General Manager</option>
+					</select><br>
 				</tbody>
 			</table>
 		</div>
