@@ -44,6 +44,8 @@ public class SignInRouteController extends BaseRouteController {
 		// TODO: Define an object that will represent the sign in request and add it as a parameter here
 	 {
 		EmployeeSignInCommand signInCommand = new EmployeeSignInCommand();
+		signInCommand.setEmployeeSignIn(employeeSignIn);
+		signInCommand.setSessionKey(request.getRequestedSessionId());
 		try {
 			signInCommand.execute();
 		}
@@ -54,8 +56,6 @@ public class SignInRouteController extends BaseRouteController {
 		// TODO: Use the credentials provided in the request body
 		//  and the "id" property of the (HttpServletRequest)request.getSession() variable
 		//  to sign in the user
-		signInCommand.setEmployeeSignIn(employeeSignIn);
-		signInCommand.setSessionKey(request.getRequestedSessionId());
 		return new ModelAndView(
 			REDIRECT_PREPEND.concat(
 				ViewNames.MAIN_MENU.getRoute()));
