@@ -31,8 +31,18 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 
 		// TODO: Logic to determine if the user associated with the current session
 		//  is able to create an employee
-
-		return new ModelAndView("employeeDetail"/*ViewModelNames.EMPLOYEE_TYPES.getValue()*/);
+		ActiveEmployeeExistsQuery user = new ActiveEmployeeExistsQuery();
+		
+		try{ user.execute();}
+		catch(NotFoundException e) {
+			return new ModelAndView("employeeDetail");
+		}
+		if(!activeUserExists()) {
+			return new ModelAndView("redirect:/signIn");
+		}
+		else {
+			return new ModelAndView("redirect:/mainMenu");
+		}
 	}
 
 	@RequestMapping(value = "/{employeeId}", method = RequestMethod.GET)
@@ -44,13 +54,17 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 
 		final Optional<ActiveUserEntity> activeUserEntity =
 			this.getCurrentUser(request);
+		EmployeeQuery employee = new EmployeeQuery();
+		employee.setEmployeeId(employeeId);
 
 		if (!activeUserEntity.isPresent()) {
-			return this.buildInvalidSessionResponse();
-		} else if (!this.isElevatedUser(activeUserEntity.get())) {
-			return this.buildNoPermissionsResponse();
+			return new ModelAndView("redirect:/signIn");
+		} 
+		else if (!this.isElevatedUser(activeUserEntity.get())) {
+			return new ModelAndView("redirect:/mainMenu");
 		}
-
+		employee.execute();
+		return new ModelAndView("employeeDetail");
 		// TODO: Query the employee details using the request route parameter
 		// TODO: Serve up the page
 		return new ModelAndView("employeeDetail"/*ViewModelNames.EMPLOYEE_TYPES.getValue()*/);
