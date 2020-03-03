@@ -1,4 +1,5 @@
 let hideProductSavedAlertTimer = undefined;
+let lvl = true;
 
 document.addEventListener("DOMContentLoaded", () => {
 	const productLookupCodeElement = getProductLookupCodeElement();
@@ -37,6 +38,9 @@ function productCountKeypress(event) {
 function saveActionClick(event) {
 	if (!validateSave()) {
 		return;
+	}
+	if(!lvl()) {
+        location.assign(location.origin + '/productListing');
 	}
 
 	const saveActionElement = event.target;
@@ -122,6 +126,9 @@ function hideProductSavedAlertModal() {
 
 // Delete
 function deleteActionClick(event) {
+    if(!lvl()) {
+        location.assign(location.origin + '/productListing');
+	}
 	const deleteActionElement = event.target;
 	const deleteActionUrl = ("/api/product/" + getProductId());
 
