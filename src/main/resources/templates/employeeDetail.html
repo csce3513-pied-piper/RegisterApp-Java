@@ -45,31 +45,34 @@
 					<tr class="nothidden">
 						<td>First Name:</td>
 						<td>
-							<input type="text" id="firstname" name="firstname" >
+							<input type="text" id="firstname" name="firstname" ><br>
 						</td>
 						<td>Last Name:</td>
 						<td>
-							<input type="text" id="lastname" name="lastname" >
+							<input type="text" id="lastname" name="lastname" ><br>
 						</td>
 						<td>Password:</td>
 						<td>
-							<input type="text" id="password" name="password" >
+							<input type="text" id="password" name="password" ><br>
 						</td>
 						<td>Confirm Password:</td>
 						<td>
-							<input type="text" id="cpassword" name="cpassword" >
+							<input type="text" id="cpassword" name="cpassword" ><br>
 						</td>
+
 					</tr>
-					<select id="type">
-						<option value="cashier">Cashier</option>
-						<option value="shiftmanager">Shift Manager</option>
-						<option value="generalmanager">General Manager</option>
-					</select><br>
 				</tbody>
 			</table>
 		</div>
 
+		<select id="type">
+			<option value="cashier">Cashier</option>
+			<option value="shiftmanager">Shift Manager</option>
+			<option value="generalmanager">General Manager</option>
+		</select><br>
+
 		<!-- TODO: An action element to initiate a save -->
+		<button type="button">Save</button><br>
 
 		<div id="employeeSavedAlertModal" class="modal animate-opacity-show">
 			<div class="modal-content">
