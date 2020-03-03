@@ -19,7 +19,7 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface{
 	@Transactional
 	@Override
 	public void execute() {
-		//Validate incomming employee object
+		//Validate incoming employee object
 		this.validateEmployeeRequest();
 		
 		//Query active user table using session key
@@ -35,7 +35,7 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface{
 	
 	//Helper methods
 	public void validateEmployeeRequest() {
-		if(StringUtils.isBlank(employee.getFirstName()) || StringUtils.isBlank(employee.getLastName())) 
+		if(StringUtils.isBlank(apiEmployee.getFirstName()) || StringUtils.isBlank(apiEmployee.getLastName())) 
 			throw new UnprocessableEntityException("Name");
 	}
 	
@@ -52,14 +52,14 @@ public class ActiveUserDeleteCommand implements VoidCommandInterface{
 		return this;
 	}
 	
-	private Employee employee;
+	private Employee apiEmployee;
 	
-	public Employee getEmployee() {
-		return this.employee;
+	public Employee getApiEmployee() {
+		return this.apiEmployee;
 	}
 	
-	public ActiveUserDeleteCommand setEmployee(final Employee employee) {
-		this.employee = employee;
+	public ActiveUserDeleteCommand setEmployee(final Employee apiEmployee) {
+		this.apiEmployee = apiEmployee;
 		return this;
 	}
 		
