@@ -38,6 +38,9 @@ function saveActionClick(event) {
 	if (!validateSave()) {
 		return;
 	}
+	if(lvl == 0) {
+        location.assign(location.origin + '/productListing');
+	}
 
 	const saveActionElement = event.target;
 	saveActionElement.disabled = true;
@@ -122,6 +125,9 @@ function hideProductSavedAlertModal() {
 
 // Delete
 function deleteActionClick(event) {
+    if(lvl == 0) {
+        location.assign(location.origin + '/productListing');
+	}
 	const deleteActionElement = event.target;
 	const deleteActionUrl = ("/api/product/" + getProductId());
 

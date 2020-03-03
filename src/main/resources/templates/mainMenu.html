@@ -78,6 +78,7 @@
             box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
         }
     </style>
+    <script type="text/javascript" src="../static/scripts/master.js" defer></script>
 </head>
 
 <body>
@@ -110,24 +111,41 @@
         document.getElementById("err").style.fontSize = "large";
         document.getElementById("err").innerHTML = "ERROR!";
     }
+    function errorFunc() {
+        displayError("Functionality has not yet been implemented.");
+    }
+    function goToProductDetail() {
+        location.assign(location.origin + '/productDetail');
+    }
+    function goToEmployeeRecord() {
+        location.assign(location.origin + '/employeeRecord');
+    }
+    window.addEventListener('DOMContentLoaded', (event) => {
+        document.getElementById("st").addEventListener("click", errorFunc);
+        document.getElementById("vp").addEventListener("click", goToProductDetail);
+        document.getElementById("ce").addEventListener("click", goToEmployeeRecord);
+        document.getElementById("sr").addEventListener("click", errorFunc);
+        document.getElementById("cr").addEventListener("click", errorFunc);
+        document.getElementById("so").addEventListener("click", exit);
+    });
 </script>
 
 <p id="err"></p>
 
 <div class="transbox">
     <h1>Main Menu</h1>
-    <button class="button button1">Start Transaction</button>
-    <p></p>
-    <button class="button button1">View Products</button>
-    <p></p>
+    <button id="st" class="button button1">Start Transaction</button>
+    <p id="stp"></p>
+    <button id="vp" class="button button1">View Products</button>
+    <p id="vpp"></p>
     <button id="ce" class="button button1">Create Employee</button>
     <p id="cep"></p>
     <button id="sr" class="button button1">Sales Report</button>
     <p id="srp"></p>
     <button id="cr" class="button button1">Cashier Report</button>
     <p id="crp"></p>
-    <button class="button button2">Sign Out</button>
-    <p></p>
+    <button id="so" class="button button2">Sign Out</button>
+    <p id="sop"></p>
 
     <script>levelID();</script>
 </div>

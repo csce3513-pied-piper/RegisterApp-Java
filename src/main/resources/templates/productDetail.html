@@ -1,18 +1,34 @@
+<!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 
 <head>
 	<title>Register - Product</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-	<link rel="stylesheet" type="text/css" href="/styles/master.css">
-	<link rel="stylesheet" type="text/css" href="/styles/productDetail.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/master.css">
+	<link rel="stylesheet" type="text/css" href="../static/styles/productDetail.css">
 
-	<script type="text/javascript" src="/scripts/master.js" defer></script>
-	<script type="text/javascript" src="/scripts/productDetail.js" defer></script>
+	<script type="text/javascript" src="../static/scripts/master.js" defer></script>
+	<script type="text/javascript" src="../static/scripts/productDetail.js" defer></script>
 </head>
 
 <body>
-
+	<script>
+    //If user is elevated, set lvl to 1; else 0.
+    var lvl = 1;
+    function levelID() {
+    	if(lvl == 0) {
+    		document.getElementById("deleteActionContainer").style.display = "none";
+    		document.getElementById("saveButton").style.display = "none";
+    	}
+    }
+    function levelTextInput() {
+    	if(lvl == 0) {
+			document.getElementById("productLookupCode").disabled = true;
+			document.getElementById("productCount").disabled = true;
+    	}
+    }
+    </script>
 	<div class="header">
 		<h1 class="primary-message">Product Detail</h1>
 	</div>
@@ -45,6 +61,7 @@
 					</tr>
 				</tbody>
 			</table>
+			<script>levelTextInput();</script>
 		</div>
 
 		<div class="productActionsWrapper">
@@ -55,6 +72,7 @@
 				<br />
 			</div>
 			<button id="saveButton" type="button" class="action">Save</button>
+			<script>levelID();</script>
 		</div>
 
 		<div id="productSavedAlertModal" class="modal animate-opacity-show">
