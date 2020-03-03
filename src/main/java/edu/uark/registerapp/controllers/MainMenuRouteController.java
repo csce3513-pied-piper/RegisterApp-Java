@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping(value = "/mainMenu")
+@RequestMapping(value = {"/mainMenu"})
 public class MainMenuRouteController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView start() {
-        return (new ModelAndView("mainMenu"));
+            return (new ModelAndView("mainMenu"));
     }
 }
