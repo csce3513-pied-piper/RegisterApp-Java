@@ -1,24 +1,3 @@
-/*package edu.uark.registerapp.controllers;
-
-import java.util.UUID;
-
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
-@Controller
-@RequestMapping(value = "/mainMenu")
-public class MainMenuRouteController {
-    @RequestMapping(method = RequestMethod.GET)
-    public ModelAndView start() {
-            return (new ModelAndView("mainMenu"));
-    }
-}*/
-
 package edu.uark.registerapp.controllers;
 
 import java.util.Map;
@@ -45,11 +24,11 @@ public class MainMenuRouteController extends BaseRouteController {
             final HttpServletRequest request
     ) {
 
-        /*final Optional<ActiveUserEntity> activeUserEntity =
+        final Optional<ActiveUserEntity> activeUserEntity =
                 this.getCurrentUser(request);
         if (!activeUserEntity.isPresent()) {
             return this.buildInvalidSessionResponse();
-        }*/
+        }
 
         ModelAndView modelAndView =
                 this.setErrorMessageFromQueryString(
