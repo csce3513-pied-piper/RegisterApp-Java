@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -11,7 +11,7 @@
 
     <style>
         body {
-            background-image: url('../images/bg.jpg');
+            background-image: url('https://i.ibb.co/zbFnWww/bg.jpg');
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -61,7 +61,7 @@
         }
 
         .button2 {
-            background-image: url('../images/wPower.png');
+            background-image: url('https://i.ibb.co/PMphG7w/wPower.png');
             background-position: 11% 48%;
             background-repeat: no-repeat;
             background-color: #f44336;
@@ -70,7 +70,7 @@
         }
 
         .button2:hover {
-            background-image: url('../images/bPower.png');
+            background-image: url('https://i.ibb.co/8N14W1h/bPower.png');
             background-position: 11% 48%;
             background-repeat: no-repeat;
             background-color: white;
@@ -105,9 +105,14 @@
     }
 
     function error() {
-        alert("ERROR!");
+        document.getElementById("err").style.marginLeft = "40px";
+        document.getElementById("err").style.color = "#f44336";
+        document.getElementById("err").style.fontSize = "large";
+        document.getElementById("err").innerHTML = "ERROR!";
     }
 </script>
+
+<p id="err"></p>
 
 <div class="transbox">
     <h1>Main Menu</h1>
