@@ -1,4 +1,8 @@
-function ValidatForm(){
+document.addEventListener("DOMContentLoaded", function(event) {
+	// TODO: Anything you want to do when the page is loaded?
+});
+
+function validateForm() {
 	var number = document.getElementById("ID");
 	var password = document.getElementById("password");
 	
