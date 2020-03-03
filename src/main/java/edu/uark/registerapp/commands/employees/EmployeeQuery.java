@@ -22,17 +22,11 @@ public class EmployeeQuery implements ResultCommandInterface<Employee> {
 	public Employee execute() {
 		final Optional<EmployeeEntity> employeeEntity =
 			this.employeeRepository.findById(this.employeeId);
-		if (employeeEntity.isPresent()) {
-			return new Employee(employeeEntity.get());
-		} else {
-			throw new NotFoundException("Employee");
-		}
-		
-		// Synchronize any incoming changes for UPDATE to the database.
-		this.apiEmployee = employeeEntity.get().synchronize(this.apiEmployee);
-
-		// Write, via an UPDATE, any changes to the database.
-		this.employeeRepository.save(employeeEntity.get());
+		if (!employeeEntity.isPresent()) 
+			throw new NotFoundException("Employee");		
+								
+		// Map entity to api object
+		this.apiEmployee = new Employee(employeeEntity.get());
 
 		return this.apiEmployee;
 	}
@@ -46,14 +40,7 @@ public class EmployeeQuery implements ResultCommandInterface<Employee> {
 		return this;
 	}
 
-	private Employee apiProduct;
-	public Employee getApiEmployee() {
-		return this.apiEmployee;
-	}
-	public EmployeeQuery setApiEmployee(final Employee apiEmployee) {
-		this.apiEmployee = apiEmployee;
-		return this;
-	}
+	private Employee apiEmployee;
 	
 	@Autowired
 	private EmployeeRepository employeeRepository;
