@@ -1,20 +1,12 @@
 package edu.uark.registerapp.commands.employees;
 
-import java.util.Optional;
-import java.util.UUID;
-
-import javax.transaction.Transactional;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import edu.uark.registerapp.commands.ResultCommandInterface;
-import edu.uark.registerapp.commands.exceptions.ConflictException;
 import edu.uark.registerapp.commands.exceptions.UnprocessableEntityException;
 import edu.uark.registerapp.models.api.Employee;
-import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.entities.EmployeeEntity;
-import edu.uark.registerapp.models.entities.ProductEntity;
 import edu.uark.registerapp.models.repositories.EmployeeRepository;
 
 public class EmployeeCreateCommand implements ResultCommandInterface<Employee>{
@@ -24,10 +16,11 @@ public class EmployeeCreateCommand implements ResultCommandInterface<Employee>{
 		if(this.apiEmployee.getIsInitialEmployee()) {
 			this.apiEmployee.setClassification(-1);//not sure what int represents general manager
 		}
-
+		
+		//Insert new employee entity
 		final EmployeeEntity createdEmployeeEntity = this.employeeRepository.save(new EmployeeEntity(apiEmployee));
 		
-		// Map employee entity to api object
+		//Synchronize entity to api object for return
 		this.apiEmployee.setId(createdEmployeeEntity.getId()); 
 		this.apiEmployee.setCreatedOn(createdEmployeeEntity.getCreatedOn());
 
@@ -35,13 +28,13 @@ public class EmployeeCreateCommand implements ResultCommandInterface<Employee>{
 	}
 	
 	// Helper methods
-		private void validateProperties() {
-			if ((StringUtils.isBlank(this.apiEmployee.getFirstName())) || 
-					(StringUtils.isBlank(this.apiEmployee.getLastName())) ||
-					(StringUtils.isBlank(this.apiEmployee.getPassword()))) {
-				throw new UnprocessableEntityException("Employee");
-			}
+	private void validateProperties() {
+		if ((StringUtils.isBlank(this.apiEmployee.getFirstName())) || 
+				(StringUtils.isBlank(this.apiEmployee.getLastName())) ||
+				(StringUtils.isBlank(this.apiEmployee.getPassword()))) {
+			throw new UnprocessableEntityException("Employee");
 		}
+	}
 	
 	//Properties
 	public boolean getIsInitialEmployee() {
