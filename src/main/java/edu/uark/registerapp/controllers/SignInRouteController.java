@@ -27,7 +27,7 @@ import edu.uark.registerapp.models.api.Product;
 @RequestMapping(value = "/")
 public class SignInRouteController extends BaseRouteController {
 	// TODO: Route for initial page load
-	@RequestMapping(method = RequestMethod.GET, value = "/")
+	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(@RequestParam Map<String,String> allParams) {
 		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
 		try {
@@ -36,8 +36,7 @@ public class SignInRouteController extends BaseRouteController {
 			return new ModelAndView("signIn");
 		}
 		catch(NotFoundException e){
-			return (new ModelAndView(REDIRECT_PREPEND.concat(
-					ViewNames.EMPLOYEE_DETAIL.getRoute())));
+			return (new ModelAndView("redirect: /employeeDetail"));
 		}
 			//return (new ModelAndView("signIn"));
 	}
