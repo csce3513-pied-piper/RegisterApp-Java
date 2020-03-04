@@ -39,7 +39,7 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 			querySearch.execute();
 		}
 		catch(NotFoundException e){
-			return (new ModelAndView("employeeDetail"));
+			return new ModelAndView("employeeDetail");
 		}
 		if(!this.isElevatedUser(activeUserEntity.get())) {
 			return new ModelAndView("employeeDetail");
@@ -48,7 +48,7 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 			return new ModelAndView("redirect:/");
 		}
 		else {
-			return new ModelAndView("redirect:/mainMenu");
+			return new ModelAndView("employeeDetail");//"redirect:/mainMenu");
 		}
 		//return new ModelAndView(ViewModelNames.EMPLOYEE_TYPES.getValue());
 		//return new ModelAndView("employeeDetail");
