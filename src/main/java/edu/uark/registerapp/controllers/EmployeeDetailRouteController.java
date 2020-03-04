@@ -32,24 +32,25 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 
 		//  TODO: Logic to determine if the user associated with the current session
 		//  is able to create an employee
+		
 		//ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
-		final Optional<ActiveUserEntity> activeUserEntity =
-				this.getCurrentUser(request);
+		//final Optional<ActiveUserEntity> activeUserEntity =
+				//this.getCurrentUser(request);
 		try {
 			querySearch.execute();
 		}
 		catch(NotFoundException e){
 			return new ModelAndView("employeeDetail");
 		}
-		if(!this.isElevatedUser(activeUserEntity.get())) {
+		/*if(!this.isElevatedUser(activeUserEntity.get())) {
 			return new ModelAndView("employeeDetail");
 		}
 		else if(!activeUserEntity.isPresent()) {
 			return new ModelAndView("redirect:/");
-		}
-		else {
+		}*/
+		//else {
 			return new ModelAndView("employeeDetail");//"redirect:/mainMenu");
-		}
+		//}
 		//return new ModelAndView(ViewModelNames.EMPLOYEE_TYPES.getValue());
 		//return new ModelAndView("employeeDetail");
 	}
