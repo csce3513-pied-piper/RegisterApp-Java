@@ -34,23 +34,23 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 		//  is able to create an employee
 		
 		//ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
-		//final Optional<ActiveUserEntity> activeUserEntity =
-				//this.getCurrentUser(request);
+		final Optional<ActiveUserEntity> activeUserEntity =
+				this.getCurrentUser(request);
 		try {
 			querySearch.execute();
+			if(!this.isElevatedUser(this.getCurrentUser(request).get())) {
+				return new ModelAndView("employeeDetail");
+			}
 		}
 		catch(NotFoundException e){
 			return new ModelAndView("employeeDetail");
 		}
-		/*if(!this.isElevatedUser(activeUserEntity.get())) {
-			return new ModelAndView("employeeDetail");
-		}
-		else if(!activeUserEntity.isPresent()) {
+		if(!activeUserEntity.isPresent()) {
 			return new ModelAndView("redirect:/");
-		}*/
-		//else {
+		}
+		else {
 			return new ModelAndView("employeeDetail");//"redirect:/mainMenu");
-		//}
+		}
 		//return new ModelAndView(ViewModelNames.EMPLOYEE_TYPES.getValue());
 		//return new ModelAndView("employeeDetail");
 	}
