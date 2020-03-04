@@ -27,7 +27,7 @@ public class ActiveUserEntity {
 	}
 
 	@Column(name = "employeeid")
-	private String/*UUID*/ employeeId;
+	private String employeeId;//UUID employeeId;
 
 	public String/*UUID*/ getEmployeeId() {
 		return this.employeeId;
