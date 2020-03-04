@@ -27,13 +27,13 @@ public class ActiveUserEntity {
 	}
 
 	@Column(name = "employeeid")
-	private String employeeId;//UUID employeeId;
+	private UUID employeeId;
 
-	public String/*UUID*/ getEmployeeId() {
+	public UUID getEmployeeId() {
 		return this.employeeId;
 	}
 
-	public ActiveUserEntity setEmployeeId(final String/*UUID*/ employeeId) {
+	public ActiveUserEntity setEmployeeId(final UUID employeeId) {
 		this.employeeId = employeeId;
 		return this;
 	}
@@ -85,7 +85,7 @@ public class ActiveUserEntity {
 		this.id = new UUID(0, 0);
 		this.classification = -1;
 		this.name = StringUtils.EMPTY;
-		this.employeeId = StringUtils.EMPTY;//new UUID(0, 0);
+		this.employeeId = new UUID(0, 0);
 		this.sessionKey = StringUtils.EMPTY;
     }
 
