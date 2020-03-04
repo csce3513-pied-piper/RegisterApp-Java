@@ -24,11 +24,11 @@ public class MainMenuRouteController extends BaseRouteController {
             final HttpServletRequest request
     ) {
 
-        /*final Optional<ActiveUserEntity> activeUserEntity =
-                this.getCurrentUser(request);*/
-        if (!activeUserEntity.isPresent()) {
+        final Optional<ActiveUserEntity> activeUserEntity =
+                this.getCurrentUser(request);
+        /*if (!activeUserEntity.isPresent()) {
             return new ModelAndView("redirect:/signIn");//this.buildInvalidSessionResponse();
-        }
+        }*/
 
         ModelAndView modelAndView =
                 this.setErrorMessageFromQueryString(
