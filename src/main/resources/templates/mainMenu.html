@@ -114,16 +114,16 @@
     function errorFunc() {
         displayError("Functionality has not yet been implemented.");
     }
-    function goToProductDetail() {
-        location.assign(location.origin + '/productDetail');
+    function goToProductListing() {
+        location.assign(location.origin + '/productListing');
     }
-    function goToEmployeeRecord() {
-        location.assign(location.origin + '/employeeRecord');
+    function goToEmployeeDetail() {
+        location.assign(location.origin + '/employeeDetail');
     }
     window.addEventListener('DOMContentLoaded', (event) => {
         document.getElementById("st").addEventListener("click", errorFunc);
-        document.getElementById("vp").addEventListener("click", goToProductDetail);
-        document.getElementById("ce").addEventListener("click", goToEmployeeRecord);
+        document.getElementById("vp").addEventListener("click", goToProductListing);
+        document.getElementById("ce").addEventListener("click", goToEmployeeDetail);
         document.getElementById("sr").addEventListener("click", errorFunc);
         document.getElementById("cr").addEventListener("click", errorFunc);
         document.getElementById("so").addEventListener("click", exit);

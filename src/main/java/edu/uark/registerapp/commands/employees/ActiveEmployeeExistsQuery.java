@@ -10,9 +10,9 @@ public class ActiveEmployeeExistsQuery implements VoidCommandInterface{
 	
 	@Override
 	public void execute() {
-		boolean isActive = false;
+		boolean isActive = true;
 		//Query employee database for any active users
-		this.employeeRepository.existsByIsActive(isActive);
+		isActive = this.employeeRepository.existsByIsActive(isActive);
 		
 		if (!isActive) //If no employee is active, throw exception
 			throw new NotFoundException("Employee");
