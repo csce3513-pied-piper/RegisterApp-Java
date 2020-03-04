@@ -12,6 +12,19 @@
 </head>
 
 <body>
+<script>
+	//If user is elevated, set lvl to 1; else 0.
+	var lvl = 1;
+
+	function levelID() {
+		if (lvl == 0){
+			document.getElementById("cn").style.display = "none";
+		}
+		else{
+			document.getElementById("cn").style.display = "block";
+		}
+	}
+</script>
 	<div class="header">
 		<h1 class="primary-message">Products Listing</h1>
 	</div>
@@ -23,7 +36,7 @@
 
 		<div class="productsWrapper">
 			<div>
-				<a href="/productDetail/" class="button">Create New</a>
+				<a href="/productDetail/" class="button" id="cn">Create New</a>
 			</div>
 
 			<br /><br />
@@ -52,6 +65,7 @@
 					}
 				}
 			</script>
+			<script>levelID();</script>
 		</div>
 	</div>
 		
