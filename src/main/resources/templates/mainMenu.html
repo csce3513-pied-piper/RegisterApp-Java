@@ -109,7 +109,7 @@
         document.getElementById("err").style.marginLeft = "40px";
         document.getElementById("err").style.color = "#f44336";
         document.getElementById("err").style.fontSize = "large";
-        document.getElementById("err").innerHTML = "ERROR!";
+        document.getElementById("err").innerHTML = "Functionality has not yet been implemented.";
     }
     function errorFunc() {
         displayError("Functionality has not yet been implemented.");
@@ -121,11 +121,11 @@
         location.assign(location.origin + '/employeeDetail');
     }
     window.addEventListener('DOMContentLoaded', (event) => {
-        document.getElementById("st").addEventListener("click", errorFunc);
+        document.getElementById("st").addEventListener("click", error);
         document.getElementById("vp").addEventListener("click", goToProductListing);
         document.getElementById("ce").addEventListener("click", goToEmployeeDetail);
-        document.getElementById("sr").addEventListener("click", errorFunc);
-        document.getElementById("cr").addEventListener("click", errorFunc);
+        document.getElementById("sr").addEventListener("click", error);
+        document.getElementById("cr").addEventListener("click", error);
         document.getElementById("so").addEventListener("click", exit);
     });
 </script>
