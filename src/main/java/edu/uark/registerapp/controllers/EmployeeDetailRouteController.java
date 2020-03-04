@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import edu.uark.registerapp.commands.employees.ActiveEmployeeExistsQuery;
 import edu.uark.registerapp.commands.exceptions.NotFoundException;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
@@ -31,9 +32,21 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 
 		// TODO: Logic to determine if the user associated with the current session
 		//  is able to create an employee
-
+		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
+		try {
+			querySearch.execute(); 
+		}
+		catch(NotFoundException e){
+			return (new ModelAndView("employeeDetail"));
+		}
+		if(!activeUserExists()) {
+			return new ModelAndView("redirect:/");
+		}
+		else {
+			return new ModelAndView("redirect:/mainMenu");
+		}
 		//return new ModelAndView(ViewModelNames.EMPLOYEE_TYPES.getValue());
-		return new ModelAndView("employeeDetail");
+		//return new ModelAndView("employeeDetail");
 	}
 
 	@RequestMapping(value = "/{employeeId}", method = RequestMethod.GET)
