@@ -1,10 +1,10 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+//document.addEventListener("DOMContentLoaded", function(event) {
 	// TODO: Anything you want to do when the page is loaded?
-});
+//});
 
 function validateForm() {
-	var number = document.getElementById("ID");
-	var password = document.getElementById("password");
+	var number = document.getElementById("ID").value;
+	var password = document.getElementById("password").value;
 	
 	//Check for a blank password
 	var numbers = /[0-9]/g;
@@ -14,6 +14,7 @@ function validateForm() {
 			return true;
 		else{
 			alert("ID must be numeric!");
+			return false;
 		}
 	}
 		
