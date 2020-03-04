@@ -27,7 +27,7 @@ import edu.uark.registerapp.models.api.Product;
 @RequestMapping(value = "/")
 public class SignInRouteController extends BaseRouteController {
 	// TODO: Route for initial page load
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public ModelAndView start(@RequestParam Map<String,String> allParams) {
 		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
 		try {
