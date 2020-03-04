@@ -70,11 +70,11 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 
 		// TODO: Query the employee details using the request route parameter
 		// TODO: Serve up the page
+		EmployeeQuery employeeQuery = new EmployeeQuery();
+		employeeQuery.setEmployeeId(employeeId);
 		employeeQuery.execute();
 		return new ModelAndView("employeeDetail");
 	}
-	@Autowired
-    private EmployeeQuery employeeQuery;
 	
 	// Helper methods
 	private boolean activeUserExists() {
