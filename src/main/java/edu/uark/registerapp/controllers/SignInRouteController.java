@@ -31,6 +31,7 @@ public class SignInRouteController extends BaseRouteController {
 	public ModelAndView start(@RequestParam Map<String,String> allParams) {
 		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
 		try {
+			new ModelAndView("signIn");
 			querySearch.execute(); 
 		}
 		catch(NotFoundException e){
