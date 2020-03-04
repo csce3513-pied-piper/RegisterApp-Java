@@ -37,7 +37,7 @@ public class EmployeeDetailRouteController extends BaseRouteController {
 		//final Optional<ActiveUserEntity> activeUserEntity =
 				//this.getCurrentUser(request);
 		try {
-			querySearch.execute();
+			//querySearch.execute();
 			if(!this.isElevatedUser(this.getCurrentUser(request).get())) {
 				return new ModelAndView("signIn");
 			}
