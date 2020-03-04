@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -29,15 +30,17 @@ public class SignInRouteController extends BaseRouteController {
 	// TODO: Route for initial page load
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(@RequestParam Map<String,String> allParams) {
-		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
+		//ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
 		try {
-			querySearch.execute(); 
+			this.querySearch.execute(); 
 		}
 		catch (NotFoundException ex){
 			return new ModelAndView("redirect:/employeeDetail");
 		}
 		return new ModelAndView("signIn");
 	}
+	@Autowired
+    private ActiveEmployeeExistsQuery querySearch;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
 	public ModelAndView performSignIn(EmployeeSignIn employeeSignIn, HttpServletRequest request)
