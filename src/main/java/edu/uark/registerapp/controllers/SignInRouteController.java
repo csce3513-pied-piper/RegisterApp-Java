@@ -32,12 +32,12 @@ public class SignInRouteController extends BaseRouteController {
 		ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
 		try {
 			querySearch.execute(); 
-			return new ModelAndView("signIn");
 		}
 		catch (NotFoundException ex){
 			//return new ModelAndView("redirect:/employeeDetail");
 			return new ModelAndView("signIn");
 		}
+		return new ModelAndView("signIn");
 	}
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
