@@ -34,7 +34,8 @@ public class SignInRouteController extends BaseRouteController {
 			querySearch.execute(); 
 		}
 		catch(NotFoundException e){
-			return (new ModelAndView("redirect:/employeeDetail"));
+			return (new ModelAndView(REDIRECT_PREPEND.concat(
+					ViewNames.MAIN_MENU.getRoute())));
 		}
 			return (new ModelAndView("signIn"));
 	}
