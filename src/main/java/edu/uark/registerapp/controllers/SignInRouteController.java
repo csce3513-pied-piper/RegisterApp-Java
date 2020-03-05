@@ -32,12 +32,12 @@ public class SignInRouteController extends BaseRouteController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView start(@RequestParam Map<String,String> allParams) {
 		//ActiveEmployeeExistsQuery querySearch = new ActiveEmployeeExistsQuery();
-		/*try {
+		try {
 			this.querySearch.execute(); 
 		}
 		catch (NotFoundException ex){
 			return new ModelAndView("redirect:/employeeDetail");
-		}*/
+		}
 		return new ModelAndView("signIn");
 	}
 	@Autowired
