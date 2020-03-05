@@ -31,11 +31,13 @@ function saveActionClick(event) {
 	const saveActionElement = event.target;
 	saveActionElement.disabled = true;
 
-	const firstName = getFirstName();
-	const firstNameIsDefined = (firstName != null);
+	const id = getID();
+	const IDIsDefined = (id != null);
 	const saveActionUrl = ("/api/employee/"
-		+ (firstNameIsDefined ? firstName : ""));
+		+ (IDIsDefined ? id : ""));
 	const saveProductRequest = {
+		id: getID(),
+		employeeId: getEmployeeID(),
 		firstName: getFirstName(),
 		lastName: getLastName(),
 		password: getPassword()
@@ -60,7 +62,7 @@ function saveActionClick(event) {
 
 					document.getElementById("deleteActionContainer").classList.remove("hidden");
 
-					setFirstName(callbackResponse.data);
+					setId(callbackResponse.data.id.trim());
 				}
 			}
 		});
@@ -101,6 +103,24 @@ function getDeleteActionElement() {
 	return document.getElementById("deleteButton");
 }
 
+function getID() {
+	return document.getElementById("employeeId").value;
+}
+function setID(employeeId) {
+	document.getElementById("employeeId").value = employeeId;
+}
+function getManagerID() {
+	return document.getElementById("employeeManagerId").value;
+}
+function setManagerID(employeeManagerId) {
+	document.getElementById("employeeManagerId").value = employeeManagerId;
+}
+function getEmployeeID() {
+	return document.getElementById("employeeEmployeeId").value;
+}
+function setEmployeeID(employeeEmployeeId) {
+	document.getElementById("employeeEmployeeId").value = employeeEmployeeId;
+}
 function getFirstName() {
 	return document.getElementById("firstname").value;
 }
