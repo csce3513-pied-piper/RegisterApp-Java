@@ -20,19 +20,19 @@
 	function levelID() {
 		if (lvl == 0){
 			document.getElementById("saveButton").style.display = "none";
-			document.getElementById("saveButton").disabled = true;
+			document.getElementById("productLookupCode").disabled = true;
 			document.getElementById("deleteButton").style.display = "none";
-			document.getElementById("deleteButton").disabled = true;
+			document.getElementById("productCount").disabled = true;
 		}
 		else{
 			document.getElementById("saveButton").style.display = "block";
 			document.getElementById("saveButton").style.marginLeft = "auto";
 			document.getElementById("saveButton").style.marginRight= "auto";
-			document.getElementById("saveButton").disabled = false;
+			document.getElementById("productLookupCode").disabled = false;
 			document.getElementById("deleteButton").style.display = "block";
 			document.getElementById("deleteButton").style.marginLeft = "auto";
 			document.getElementById("deleteButton").style.marginRight = "auto";
-			document.getElementById("deleteButton").disabled = false;
+			document.getElementById("productCount").disabled = false;
 		}
 	}
 </script>
