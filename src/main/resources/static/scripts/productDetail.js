@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	getProductCountElement().addEventListener("keypress", productCountKeypress);
 	productLookupCodeElement.addEventListener("keypress", productLookupCodeKeypress);
-	
+
 	getSaveActionElement().addEventListener("click", saveActionClick);
 	getDeleteActionElement().addEventListener("click", deleteActionClick);
 
@@ -37,9 +37,6 @@ function productCountKeypress(event) {
 function saveActionClick(event) {
 	if (!validateSave()) {
 		return;
-	}
-	if(lvl == 0) {
-        location.assign(location.origin + '/productListing');
 	}
 
 	const saveActionElement = event.target;
@@ -125,9 +122,6 @@ function hideProductSavedAlertModal() {
 
 // Delete
 function deleteActionClick(event) {
-    if(lvl == 0) {
-        location.assign(location.origin + '/productListing');
-	}
 	const deleteActionElement = event.target;
 	const deleteActionUrl = ("/api/product/" + getProductId());
 
