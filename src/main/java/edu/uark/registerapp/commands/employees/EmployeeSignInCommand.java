@@ -70,7 +70,6 @@ public class EmployeeSignInCommand implements VoidCommandInterface{
 		else { //If record doesn't exist, set all fields and insert record
 			activeUserEntity.get().setSessionKey(this.sessionKey);
 			activeUserEntity.get().setEmployeeId(UUID.fromString(this.employeeSignIn.getEmployeeId()));
-			activeUserEntity.get().setPassword(this.employeeSignIn.getPassword());
 			this.activeUserRepository.save(activeUserEntity.get());
 		}
 	}
