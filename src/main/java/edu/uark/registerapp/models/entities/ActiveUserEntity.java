@@ -88,17 +88,5 @@ public class ActiveUserEntity {
 		this.employeeId = new UUID(0, 0);
 		this.sessionKey = StringUtils.EMPTY;
     }
-
-    /*@Column(name = "password")
-	private String password;
-
-	public String getPassword() {
-		return this.password;
-	}
-
-	public ActiveUserEntity setPassword(final String password) {
-		this.password = password;
-		return this;
-	}*/
 	
 }
