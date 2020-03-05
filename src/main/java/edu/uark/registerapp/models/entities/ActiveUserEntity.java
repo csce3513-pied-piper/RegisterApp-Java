@@ -89,7 +89,7 @@ public class ActiveUserEntity {
 		this.sessionKey = StringUtils.EMPTY;
     }
 
-    @Column(name = "password")
+    /*@Column(name = "password")
 	private String password;
 
 	public String getPassword() {
@@ -99,6 +99,6 @@ public class ActiveUserEntity {
 	public ActiveUserEntity setPassword(final String password) {
 		this.password = password;
 		return this;
-	}
+	}*/
 	
 }
