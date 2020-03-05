@@ -85,7 +85,7 @@
 <script>
     //If user is elevated, set lvl to 1; else 0.
     var lvl = document.getElementById("eu").textContent;
-    document.getElementById("err").innerHTML = lvl;
+    document.getElementById("err").innerHTML = document.getElementById("eu").textContent;
 
     function levelID() {
         if (lvl == 0){
