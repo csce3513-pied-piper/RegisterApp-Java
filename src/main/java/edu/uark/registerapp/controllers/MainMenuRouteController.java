@@ -23,13 +23,13 @@ public class MainMenuRouteController extends BaseRouteController {
             @RequestParam final Map<String, String> queryParameters,
             final HttpServletRequest request
     ) {
-        try {
+        /*try {
             final Optional<ActiveUserEntity> activeUserEntity =
                     this.getCurrentUser(request);
         }
         catch(Exception e) {
             return this.buildInvalidSessionResponse();
-        }
+        }*/
 
         final Optional<ActiveUserEntity> activeUserEntity =
                 this.getCurrentUser(request);
