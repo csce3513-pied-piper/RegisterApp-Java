@@ -27,19 +27,19 @@
 					<tr class="hidden">
 						<td>ID:</td>
 						<td>
-							<input id="employeeId" type="hidden" value="" />
+							<input id="employeeId" type="hidden" th:value="${!employee.isEmpty} ? ${employee.id} : ''" />
 						</td>
 					</tr>
 					<tr class="hidden">
 						<td>Manager ID:</td>
 						<td>
-							<input id="employeeManagerId" type="hidden" value="" />
+							<input id="employeeManagerId" type="hidden" th:value="${!employee.isEmpty} ? ${employee.managerId} : ''" />
 						</td>
 					</tr>
-					<tr th:class="Employee">
+					<tr th:class="${employee.isEmpty} ? hidden : ''">
 						<td class="label">Employee ID:</td>
 						<td>
-							<input id="employeeEmployeeId" type="text" value="" class="update" disabled />
+							<input id="employeeEmployeeId" type="text" th:value="${!employee.isEmpty} ? ${employee.employeeId} : ''" class="update" disabled />
 						</td>
 					</tr>
 					<tr class="nothidden">
@@ -72,7 +72,7 @@
 		</select><br>
 
 		<!-- TODO: An action element to initiate a save -->
-		<button onclick="saveActionClick()">Save</button><br>
+		<button id="saveButton" type="button" class="action">Save</button>
 
 		<div id="employeeSavedAlertModal" class="modal animate-opacity-show">
 			<div class="modal-content">
@@ -86,7 +86,7 @@
 		</div>
 	</div>
 
-	<div class="footer">
+	<div class="footer" th:classappend="${employee.isInitialEmployee} ? hidden : ''">
 		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
 	</div>
 
