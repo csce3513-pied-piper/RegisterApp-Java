@@ -4,10 +4,10 @@
 	<title>Register - Employee</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" type="text/css" href="/styles/master.css">
+	<link rel="stylesheet" type="text/css" href="master.css">
 
-	<script type="text/javascript" src="/scripts/master.js" defer></script>
-	<script type="text/javascript" src="/scripts/employeeDetail.js" defer></script>
+	<script type="text/javascript" src="master.js" defer></script>
+	<script type="text/javascript" src="employeeDetail.js" defer></script>
 </head>
 
 <body>
@@ -27,19 +27,19 @@
 					<tr class="hidden">
 						<td>ID:</td>
 						<td>
-							<input id="employeeId" type="hidden" value="" />
+							<input id="employeeId" type="hidden" th:value="${!employee.isEmpty} ? ${employee.id} : ''" />
 						</td>
 					</tr>
 					<tr class="hidden">
 						<td>Manager ID:</td>
 						<td>
-							<input id="employeeManagerId" type="hidden" value="" />
+							<input id="employeeManagerId" type="hidden" th:value="${!employee.isEmpty} ? ${employee.managerId} : ''" />
 						</td>
 					</tr>
-					<tr class="employeeID">
+					<tr th:class="${employee.isEmpty} ? hidden : ''">
 						<td class="label">Employee ID:</td>
 						<td>
-							<input id="employeeEmployeeId" type="text" value="" class="update" disabled />
+							<input id="employeeEmployeeId" type="text" th:value="${!employee.isEmpty} ? ${employee.employeeId} : ''" class="update" disabled />
 						</td>
 					</tr>
 					<tr class="nothidden">
@@ -86,7 +86,7 @@
 		</div>
 	</div>
 
-	<div class="footer" classappend="">
+	<div class="footer" th:classappend="${employee.isInitialEmployee} ? hidden : ''">
 		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
 	</div>
 

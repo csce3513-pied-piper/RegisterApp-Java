@@ -60,6 +60,10 @@ function hideEmployeeSavedAlertModal() {
 // End save
 
 //Getters and setters
+function getSaveActionElement() {
+	return document.getElementById("saveButton");
+}
+
 function getSavedAlertModalElement() {
 	return document.getElementById("employeeSavedAlertModal");
 }
