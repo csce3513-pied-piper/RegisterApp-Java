@@ -3,6 +3,7 @@ package edu.uark.registerapp.controllers;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.swing.JOptionPane;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,14 +54,12 @@ public class SignInRouteController extends BaseRouteController {
 			signInCommand.execute();
 		}
 		catch(NotFoundException e) {
-			System.out.println("Sign In was not successfull");
+			JOptionPane.showMessageDialog(null, "Sign In was not successfull");
 			return (new ModelAndView("signIn"));
 		}
 		// TODO: Use the credentials provided in the request body
 		//  and the "id" property of the (HttpServletRequest)request.getSession() variable
 		//  to sign in the user
-		return new ModelAndView(
-			REDIRECT_PREPEND.concat(
-				ViewNames.MAIN_MENU.getRoute()));
+		return new ModelAndView("redirect:/mainMenu");
 	}
 }
