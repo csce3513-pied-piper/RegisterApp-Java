@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 //If user is elevated, set lvl to 1; else 0.
 var temper = window.location.href.split('=').pop();
-var lvl = temper.split('/')[0];
+var lvl = 0;//temper.split('/')[0];
 
 function levelID() {
 	if (lvl == 0){
