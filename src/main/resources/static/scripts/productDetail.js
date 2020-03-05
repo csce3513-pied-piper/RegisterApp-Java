@@ -15,6 +15,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
+//If user is elevated, set lvl to 1; else 0.
+var temper = window.location.href.split('=').pop();
+var lvl = temper.split('/')[0];
+
+function levelID() {
+	if (lvl == 0){
+		document.getElementById("saveButton").style.display = "none";
+	}
+	else{
+		document.getElementById("saveButton").style.display = "block";
+	}
+}
+
 function productLookupCodeKeypress(event) {
 	if (event.which !== 13) { // Enter key
 		return;
