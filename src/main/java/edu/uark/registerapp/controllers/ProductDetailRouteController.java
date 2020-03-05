@@ -26,7 +26,7 @@ public class ProductDetailRouteController {
 				(new Product()).setLookupCode(StringUtils.EMPTY).setCount(0));
 	}
 
-	@RequestMapping(value = "/{productId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/lvl={lvl}/{productId}", method = RequestMethod.GET)
 	public ModelAndView startWithProduct(@PathVariable final UUID productId) {
 		final ModelAndView modelAndView =
 			new ModelAndView(ViewNames.PRODUCT_DETAIL.getViewName());
