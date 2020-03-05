@@ -35,8 +35,8 @@ public class MainMenuRouteController extends BaseRouteController {
                         queryParameters);
 
         // TODO: Examine the ActiveUser classification if you want this information
-        int elevate = 0;
-        if(this.isElevatedUser(activeUserEntity.get()) == true){
+        int elevate;
+        if(this.isElevatedUser(activeUserEntity.get())){
             elevate = 1;
         }
         else{
