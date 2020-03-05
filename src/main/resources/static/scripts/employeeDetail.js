@@ -2,6 +2,18 @@ let hideEmployeeSavedAlertTimer = undefined;
 
 document.addEventListener("DOMContentLoaded", () => {
 	// TODO: Things that need doing when the view is loaded
+	const employeeId = getEmployeeID();
+
+	getFirstName().addEventListener("keypress", firstNameKeypress);
+	employeeId.addEventListener("keypress", employeeIdKeypress);
+
+	getSaveActionElement().addEventListener("click", saveActionClick);
+	getDeleteActionElement().addEventListener("click", deleteActionClick);
+
+	if (!productLookupCodeElement.disabled) {
+		productLookupCodeElement.focus();
+		productLookupCodeElement.select();
+	}
 });
 
 // Save
@@ -31,10 +43,9 @@ function saveActionClick(event) {
 	const saveActionElement = event.target;
 	saveActionElement.disabled = true;
 
-	const id = getID();
-	const IDIsDefined = (id != null);
-	const saveActionUrl = ("/api/employee/"
-		+ (IDIsDefined ? id : ""));
+	const employeeId = getEmployeeID();
+	const IDIsDefined = (employeeId != null && (employeeId.trim() !== ""));
+	const saveActionUrl = ("/api/employee/" + (IDIsDefined ? id : ""));
 	const saveProductRequest = {
 		id: getID(),
 		employeeId: getEmployeeID(),
@@ -43,12 +54,12 @@ function saveActionClick(event) {
 		password: getPassword()
 	};
 
-	if (firstNameIsDefined) {
+	if (IDIsDefined) {
 		ajaxPut(saveActionUrl, saveProductRequest, (callbackResponse) => {
 			saveActionElement.disabled = false;
 
 			if (isSuccessResponse(callbackResponse)) {
-				displayEmploSavedAlertModal();
+				displayEmployeeSavedAlertModal();
 			}
 		});
 	} else {
@@ -56,7 +67,7 @@ function saveActionClick(event) {
 			saveActionElement.disabled = false;
 
 			if (isSuccessResponse(callbackResponse)) {
-				displayEmploSavedAlertModal();
+				displayEmployeeSavedAlertModal();
 
 				if ((callbackResponse.data != null)) {
 
