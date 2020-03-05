@@ -15,6 +15,7 @@
 <script>
 	//If user is elevated, set lvl to 1; else 0.
 	var lvl = window.location.href.split('=').pop();
+	document.getElementById("cn").setAttribute("href", "/productDetail/");
 
 	function levelID() {
 		if (lvl == 0){
@@ -36,7 +37,7 @@
 
 		<div class="productsWrapper">
 			<div>
-				<a href="/productDetail/" class="button" id="cn">Create New</a>
+				<a class="button" id="cn">Create New</a>
 			</div>
 
 			<br /><br />
