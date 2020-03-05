@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	// TODO: Things that need doing when the view is loaded
 	const employeeId = getEmployeeID();
 
-	getFirstName().addEventListener("keypress", firstNameKeypress);
-	employeeId.addEventListener("keypress", employeeIdKeypress);
+	document.getElementById("firstname").addEventListener("keypress", firstNameKeypress);
+	document.getElementById("employeeEmployeeId").addEventListener("keypress", employeeIdKeypress);
 
 	getSaveActionElement().addEventListener("click", saveActionClick);
 	getDeleteActionElement().addEventListener("click", deleteActionClick);
@@ -15,6 +15,24 @@ document.addEventListener("DOMContentLoaded", () => {
 		productLookupCodeElement.select();
 	}
 });
+
+function employeeIdKeypress(event) {
+	if (event.which !== 13) { // Enter key
+		return;
+	}
+
+	const firstNameElement = document.getElementById("firstname");
+	firstNameElement.focus();
+	firstNameElement.select();
+}
+
+function firstNameKeypress(event) {
+	if (event.which !== 13) { // Enter key
+		return;
+	}
+
+	saveActionClick();
+}
 
 // Save
 function saveActionClick(event) {
