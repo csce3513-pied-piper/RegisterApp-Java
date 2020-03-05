@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	const employeeId = getEmployeeID();
 
 	document.getElementById("firstname").addEventListener("keypress", firstNameKeypress);
-	document.getElementById("employeeEmployeeId").addEventListener("keypress", employeeIdKeypress);
+	document.getElementById("lastname").addEventListener("keypress", lastNameKeypress);
 
 	getSaveActionElement().addEventListener("click", saveActionClick);
 	getDeleteActionElement().addEventListener("click", deleteActionClick);
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	}
 });
 
-function employeeIdKeypress(event) {
+function lastNameKeypress(event) {
 	if (event.which !== 13) { // Enter key
 		return;
 	}
