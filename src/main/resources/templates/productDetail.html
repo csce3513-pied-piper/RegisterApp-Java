@@ -20,9 +20,15 @@
 	function levelID() {
 		if (lvl == 0){
 			document.getElementById("saveButton").style.display = "none";
+			document.getElementById("deleteButton").style.display = "none";
 		}
 		else{
 			document.getElementById("saveButton").style.display = "block";
+			document.getElementById("saveButton").style.marginLeft = "auto";
+			document.getElementById("saveButton").style.marginRight= "auto";
+			document.getElementById("deleteButton").style.display = "block";
+			document.getElementById("deleteButton").style.marginLeft = "auto";
+			document.getElementById("deleteButton").style.marginRight = "auto";
 		}
 	}
 </script>
