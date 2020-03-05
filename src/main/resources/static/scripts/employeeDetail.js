@@ -2,6 +2,17 @@ let hideEmployeeSavedAlertTimer = undefined;
 
 document.addEventListener("DOMContentLoaded", () => {
 	// TODO: Things that need doing when the view is loaded
+	document.getElementById("Save").addEventListener("click", saveFunction);
+	function saveFunction(){
+	var firstname = document.getElementById("firstname").value;
+	var lastname = document.getElementById("lastname").value;
+	var password = document.getElementById("password").value;
+	var cpassword = document.getElementById("cpassword").value;
+	if ((firstname == null)or(lastname == null)or(password == null)or(password !== cpassword)){
+	alert ("Error");
+	return;}
+	//TODO: AJAX Post to server?
+	}
 });
 
 // Save
