@@ -94,10 +94,12 @@ public class EmployeeRestController extends BaseRestController {
 			return elevatedUserResponse;
 		}
 
+		EmployeeUpdateCommand employeeUpdate = new EmployeeUpdateCommand();
+		employeeUpdate.setApiEmployee(employee);
+		employeeUpdate.setEmployeeId(employeeId);
 		employeeUpdate.execute();
 		// TODO: Update the employee
 		return employee;
 	}
-	@Autowired
-    private EmployeeUpdateCommand employeeUpdate;
+	
 }
