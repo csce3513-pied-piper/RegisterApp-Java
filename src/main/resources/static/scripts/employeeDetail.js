@@ -86,13 +86,6 @@ function saveActionClick(event) {
 
 			if (isSuccessResponse(callbackResponse)) {
 				displayEmployeeSavedAlertModal();
-
-				if ((callbackResponse.data != null)) {
-
-					document.getElementById("deleteActionContainer").classList.remove("hidden");
-
-					setId(callbackResponse.data.id.trim());
-				}
 			}
 		});
 	}
