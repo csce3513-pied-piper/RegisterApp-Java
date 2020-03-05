@@ -24,9 +24,9 @@
 		<form action="/" method="POST" onsubmit="return validateForm();" th:object="${EmployeeSignIn}" class="inputContent">
 			<!-- TODO: Form input elements -->
 			<label>Employee ID :</label>
-			<input type="number" id="ID" name="ID" th:field="{employeeId}"><br><br>
+			<input type="number" id="ID" name="ID" th:field="*{employeeId}"><br><br>
 			<label>Password :</label>
-			<input type="password" id="password" name="password" th:field="{password}"><br><br>
+			<input type="password" id="password" name="password" th:field="*{password}"><br><br>
 			<input type="submit" value="Sign In">
 		</form>
 	</div>
