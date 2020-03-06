@@ -54,7 +54,12 @@ public class EmployeeRestController extends BaseRestController {
 								createdEmployee.getEmployeeId())));*/
 				createEmployee.setApiEmployee(employee);
 			    createEmployee.setEmployeeId(isInitialEmployee);
-			    //createEmployee.execute();
+			    final Employee createdEmployee = createEmployee.execute();
+				createdEmployee.setRedirectUrl(ViewNames.SIGN_IN.getRoute().concat(
+						this.buildInitialQueryParameter(
+							"employeeId", createdEmployee.getEmployeeId())));
+
+				return createdEmployee.setIsInitialEmployee(isInitialEmployee);
 			}
 			response.setStatus(HttpServletResponse.SC_FOUND);
 			canCreateEmployeeResponse = new ApiResponse();
@@ -69,6 +74,9 @@ public class EmployeeRestController extends BaseRestController {
 		// TODO: Create an employee;
 		//final Employee createdEmployee = new Employee();
 		final Employee createdEmployee = createEmployee.execute();
+		createdEmployee.setRedirectUrl(ViewNames.SIGN_IN.getRoute().concat(
+				this.buildInitialQueryParameter(
+					"employeeId", createdEmployee.getEmployeeId())));
 
 		return createdEmployee.setIsInitialEmployee(isInitialEmployee);
 	}
