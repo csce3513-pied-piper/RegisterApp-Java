@@ -8,12 +8,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	document.getElementById("lastname").addEventListener("keypress", lastNameKeypress);
 
 	getSaveActionElement().addEventListener("click", saveActionClick);
-	getDeleteActionElement().addEventListener("click", deleteActionClick);
+	//getDeleteActionElement().addEventListener("click", deleteActionClick);
 
-	if (!productLookupCodeElement.disabled) {
+	/*if (!productLookupCodeElement.disabled) {
 		productLookupCodeElement.focus();
 		productLookupCodeElement.select();
-	}
+	}*/
 });
 
 function lastNameKeypress(event) {

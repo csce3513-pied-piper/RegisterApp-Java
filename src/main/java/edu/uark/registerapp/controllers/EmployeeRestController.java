@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.employees.ActiveEmployeeExistsQuery;
+import edu.uark.registerapp.commands.employees.EmployeeCreateCommand;
 import edu.uark.registerapp.commands.employees.EmployeeUpdateCommand;
 import edu.uark.registerapp.commands.exceptions.NotFoundException;
 import edu.uark.registerapp.controllers.enums.QueryParameterNames;
@@ -35,7 +36,6 @@ public class EmployeeRestController extends BaseRestController {
 
 		boolean isInitialEmployee = false;
 		ApiResponse canCreateEmployeeResponse;
-		ActiveEmployeeExistsQuery activeUser = new ActiveEmployeeExistsQuery();
 
 		try {
 			// TODO: Query if any active employees exist
@@ -45,6 +45,17 @@ public class EmployeeRestController extends BaseRestController {
 				this.redirectUserNotElevated(request, response);
 		} catch (final NotFoundException e) {
 			isInitialEmployee = true;
+			if (isInitialEmployee) {
+				/*createdEmployee
+					.setRedirectUrl(
+						ViewNames.SIGN_IN.getRoute().concat(
+							this.buildInitialQueryParameter(
+								"employeeId",//QueryParameterNames.EMPLOYEE_ID.getValue(),
+								createdEmployee.getEmployeeId())));*/
+				createEmployee.setApiEmployee(employee);
+			    createEmployee.setEmployeeId(isInitialEmployee);
+			    //createEmployee.execute();
+			}
 			response.setStatus(HttpServletResponse.SC_FOUND);
 			canCreateEmployeeResponse = new ApiResponse();
 			canCreateEmployeeResponse.setRedirectUrl("/");
@@ -55,19 +66,15 @@ public class EmployeeRestController extends BaseRestController {
 		}
 
 		// TODO: Create an employee;
-		final Employee createdEmployee = new Employee();
-
-		if (isInitialEmployee) {
-			createdEmployee
-				.setRedirectUrl(
-					ViewNames.SIGN_IN.getRoute().concat(
-						this.buildInitialQueryParameter(
-							"employeeId",//QueryParameterNames.EMPLOYEE_ID.getValue(),
-							createdEmployee.getEmployeeId())));
-		}
+		//final Employee createdEmployee = new Employee();
+		final Employee createdEmployee = createEmployee.execute();
 
 		return createdEmployee.setIsInitialEmployee(isInitialEmployee);
 	}
+	@Autowired
+	private ActiveEmployeeExistsQuery activeUser;
+	@Autowired
+	private EmployeeCreateCommand createEmployee;
 
 	@RequestMapping(value = "/{employeeId}", method = RequestMethod.PATCH)
 	public @ResponseBody ApiResponse updateEmployee(

@@ -2,6 +2,7 @@ package edu.uark.registerapp.commands.employees;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import edu.uark.registerapp.commands.ResultCommandInterface;
 import edu.uark.registerapp.commands.exceptions.UnprocessableEntityException;
@@ -9,6 +10,7 @@ import edu.uark.registerapp.models.api.Employee;
 import edu.uark.registerapp.models.entities.EmployeeEntity;
 import edu.uark.registerapp.models.repositories.EmployeeRepository;
 
+@Service
 public class EmployeeCreateCommand implements ResultCommandInterface<Employee>{
 	@Override
 	public Employee execute() {
