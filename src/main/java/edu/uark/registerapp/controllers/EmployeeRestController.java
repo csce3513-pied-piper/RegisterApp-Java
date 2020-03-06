@@ -59,6 +59,7 @@ public class EmployeeRestController extends BaseRestController {
 			response.setStatus(HttpServletResponse.SC_FOUND);
 			canCreateEmployeeResponse = new ApiResponse();
 			canCreateEmployeeResponse.setRedirectUrl("/");
+			return canCreateEmployeeResponse;
 		}
 
 		if (!canCreateEmployeeResponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
@@ -87,7 +88,7 @@ public class EmployeeRestController extends BaseRestController {
 		final ApiResponse elevatedUserResponse =
 			this.redirectUserNotElevated(request, response);
 		ApiResponse canCreateEmployeeResponse;
-		ActiveEmployeeExistsQuery activeUser = new ActiveEmployeeExistsQuery();
+		//ActiveEmployeeExistsQuery activeUser = new ActiveEmployeeExistsQuery();
 
 		try {
 			// TODO: Query if any active employees exist
