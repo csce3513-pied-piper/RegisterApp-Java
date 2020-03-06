@@ -27,19 +27,19 @@
 					<tr class="hidden">
 						<td>ID:</td>
 						<td>
-							<input id="employeeId" type="hidden" value="" />
+							<input id="employeeId" type="hidden" th:value="${!employee.isEmpty} ? ${employee.id} : ''" />
 						</td>
 					</tr>
 					<tr class="hidden">
 						<td>Manager ID:</td>
 						<td>
-							<input id="employeeManagerId" type="hidden" value="" />
+							<input id="employeeManagerId" type="hidden" th:value="${!employee.isEmpty} ? ${employee.managerId} : ''" />
 						</td>
 					</tr>
 					<tr class="">
 						<td class="label">Employee ID:</td>
 						<td>
-							<input id="employeeEmployeeId" type="text" value="" class="update" disabled />
+							<input id="employeeEmployeeId" type="text" th:value="${!employee.isEmpty} ? ${employee.employeeId} : ''" class="update" disabled />
 						</td>
 					</tr>
 					<tr class="nothidden">
