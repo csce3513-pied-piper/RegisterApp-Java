@@ -43,7 +43,7 @@ public class MainMenuRouteController extends BaseRouteController {
             elevate = 0;
         }*/
 		// SET elevate TO EQUAL 1 FOR ELEVATED USERS, AND 0 FOR NORMAL USERS BELOW
-		elevate = 1;
+		elevate = 0;
         modelAndView.addObject(
                 ViewModelNames.IS_ELEVATED_USER.getValue(),
                 elevate);
