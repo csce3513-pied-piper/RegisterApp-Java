@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	getProductCountElement().addEventListener("keypress", productCountKeypress);
 	productLookupCodeElement.addEventListener("keypress", productLookupCodeKeypress);
-
+	
 	getSaveActionElement().addEventListener("click", saveActionClick);
 	getDeleteActionElement().addEventListener("click", deleteActionClick);
 

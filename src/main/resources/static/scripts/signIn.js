@@ -1,25 +1,43 @@
-//document.addEventListener("DOMContentLoaded", function(event) {
-	// TODO: Anything you want to do when the page is loaded?
-//});
+document.addEventListener("DOMContentLoaded", function(event) {
+	const employeeIdEditElement = getEmployeeIdEditElement();
+	employeeIdEditElement.focus();
+	employeeIdEditElement.select();
+});
 
 function validateForm() {
-	var number = document.getElementById("ID").value;
-	var password = document.getElementById("password").value;
-	
-	//Check for a blank password
-	var numbers = /[0-9]/g;
-	if(number != '' && password != ''){
-		//Check for a numeric ID
-		if(number.match(numbers))
-			return true;
-		else{
-			alert("ID must be numeric!");
-			return false;
-		}
-	}
+	const employeeIdEditElement = getEmployeeIdEditElement();
+	if (isNaN(Number(employeeIdEditElement.value))
+		|| (Number(employeeIdEditElement.value) <= 0)) {
+
+		displayError("Please provide a valid employee ID.");
+
+		employeeIdEditElement.focus();
+		employeeIdEditElement.select();
 		
-	else{
-		alert("Please enter all credentials!");
 		return false;
 	}
+
+	const passwordEditElement = getPasswordEditElement();
+	if ((passwordEditElement.value == null)
+		|| (passwordEditElement.value.trim() === "")) {
+
+		displayError("Please provide a valid password. It may not be blank.");
+
+		passwordEditElement.focus();
+		passwordEditElement.select();
+		
+		return false;
+	}
+
+	return true;
 }
+
+//Getters and setters
+function getPasswordEditElement() {
+	return document.getElementById("password");
+}
+
+function getEmployeeIdEditElement() {
+	return document.getElementById("employeeId");
+}
+//End getters and setters

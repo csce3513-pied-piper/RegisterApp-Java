@@ -2,7 +2,7 @@
 
 <head>
 	<title>Register - Product</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
 	<link rel="stylesheet" type="text/css" href="/styles/master.css">
 	<link rel="stylesheet" type="text/css" href="/styles/productDetail.css">
@@ -12,87 +12,67 @@
 </head>
 
 <body>
-<script>
-	//If user is elevated, set lvl to 1; else 0.
-	var temper = window.location.href.split('=').pop();
-	var lvl = temper.split('/')[0];
 
-	function levelID() {
-		if (lvl == 0){
-			document.getElementById("saveButton").style.display = "none";
-			document.getElementById("productLookupCode").disabled = true;
-			document.getElementById("deleteButton").style.display = "none";
-			document.getElementById("productCount").disabled = true;
-		}
-		else{
-			document.getElementById("saveButton").style.display = "block";
-			document.getElementById("saveButton").style.marginLeft = "auto";
-			document.getElementById("saveButton").style.marginRight= "auto";
-			document.getElementById("productLookupCode").disabled = false;
-			document.getElementById("deleteButton").style.display = "block";
-			document.getElementById("deleteButton").style.marginLeft = "auto";
-			document.getElementById("deleteButton").style.marginRight = "auto";
-			document.getElementById("productCount").disabled = false;
-		}
-	}
-</script>
-
-<div class="header">
-	<h1 class="primary-message">Product Detail</h1>
-</div>
-
-<div id="main" class="main">
-	<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
-		<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+	<div class="header">
+		<h1 class="primary-message">Product Detail</h1>
 	</div>
-
-	<div class="productDetailWrapper">
-		<table id="productDetails">
-			<tbody>
-			<tr class="hidden">
-				<td>ID:</td>
-				<td>
-					<input id="productId" type="hidden" th:value="${!product.isEmpty} ? ${product.id} : ''" />
-				</td>
-			</tr>
-			<tr>
-				<td class="label">Lookup Code:</td>
-				<td>
-					<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" />
-				</td>
-			</tr>
-			<tr>
-				<td class="label">Count:</td>
-				<td>
-					<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" />
-				</td>
-			</tr>
-			</tbody>
-		</table>
-	</div>
-
-	<div class="productActionsWrapper">
-		<br />
-		<div id="deleteActionContainer" th:class="${product.isEmpty} ? hidden : ''">
-			<button id="deleteButton" type="button" class="action">Delete</button>
-			<br />
-			<br />
+		
+	<div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
 		</div>
-		<button id="saveButton" type="button" class="action">Save</button>
-	</div>
 
-	<div id="productSavedAlertModal" class="modal animate-opacity-show">
-		<div class="modal-content">
-			<div class="container gray-blue">
-				<h1>
-					<span>Product</span><br />
-					<span>Saved</span>
-				</h1>
+		<div class="productDetailWrapper">
+			<table id="productDetails">
+				<tbody>
+					<tr class="hidden">
+						<td>ID:</td>
+						<td>
+							<input id="productId" type="hidden" th:value="${!product.isEmpty} ? ${product.id} : ''" />
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Lookup Code:</td>
+						<td>
+							<input id="productLookupCode" type="text" th:value="${!product.isEmpty} ? ${product.lookupCode} : ''" class="update" th:disabled="not ${isElevatedUser}" />
+						</td>
+					</tr>
+					<tr>
+						<td class="label">Count:</td>
+						<td>
+							<input id="productCount" type="number" th:value="${!product.isEmpty} ? ${product.count} : ''" class="update" th:disabled="not ${isElevatedUser}" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="productActionsWrapper" th:class="(not ${isElevatedUser} OR not ${#strings.isEmpty(errorMessage)}) ? hidden : ''">
+			<br />
+			<div id="deleteActionContainer" th:class="${product.isEmpty} ? hidden : ''">
+				<button id="deleteButton" type="button" class="action">Delete</button>
+				<br />
+				<br />
+			</div>
+			<button id="saveButton" type="button" class="action">Save</button>
+		</div>
+
+		<div id="productSavedAlertModal" class="modal animate-opacity-show">
+			<div class="modal-content">
+				<div class="container gray-blue">
+					<h1>
+						<span>Product</span><br />
+						<span>Saved</span>
+					</h1>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-<script>levelID();</script>
+
+	<div class="footer">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+	</div>
+		
 </body>
 
 </html>

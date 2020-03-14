@@ -88,5 +88,4 @@ public class ActiveUserEntity {
 		this.employeeId = new UUID(0, 0);
 		this.sessionKey = StringUtils.EMPTY;
     }
-	
 }

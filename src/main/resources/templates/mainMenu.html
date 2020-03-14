@@ -1,152 +1,62 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<html xmlns:th="https://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Main Menu</title>
+	<title>Register - Main Menu</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
 
-    <!-- Image Sources:
-     https://cdn.dribbble.com/users/13449/screenshots/1816328/attachments/332811/Lakeside_Sunrise_3840x2160.jpg
-     https://material.io/resources/icons/?style=baseline -->
+	<link rel="stylesheet" type="text/css" href="/styles/master.css">
 
-    <style>
-        body {
-            background-image: url('https://i.ibb.co/zbFnWww/bg.jpg');
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover;
-        }
-
-        div.transbox {
-            margin: 2%;
-            background-color: #ffffff;
-            border: 1px solid black;
-            opacity: 0.6;
-            width: 300px;
-        }
-
-        div.transbox *{
-            margin-left: 40px;
-            font-weight: bold;
-        }
-
-        div.transbox img{
-            margin-left: 0px;
-        }
-
-        .button {
-            background-color: #008CBA; /* Blueish */
-            border: none;
-            color: white;
-            padding: 16px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            transition-duration: 0.4s;
-            cursor: pointer;
-        }
-
-        .button1 {
-            background-color: white;
-            color: black;
-            border: 2px solid #008CBA;
-        }
-
-        .button1:hover {
-            background-color: #008CBA;
-            color: white;
-            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-        }
-
-        .button2 {
-            background-image: url('https://i.ibb.co/PMphG7w/wPower.png');
-            background-position: 11% 48%;
-            background-repeat: no-repeat;
-            background-color: #f44336;
-            color: white;
-            border: 2px solid #f44336;
-        }
-
-        .button2:hover {
-            background-image: url('https://i.ibb.co/8N14W1h/bPower.png');
-            background-position: 11% 48%;
-            background-repeat: no-repeat;
-            background-color: white;
-            color: black;
-            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-        }
-    </style>
-    <script type="text/javascript" src="../static/scripts/master.js" defer></script>
+	<script type="text/javascript" src="/scripts/master.js" defer></script>
+	<script type="text/javascript" src="/scripts/mainMenu.js" defer></script>
 </head>
 
 <body>
-<script>
-    //If user is elevated, set lvl to 1; else 0.
-    var lvl = [[${isElevatedUser}]];
 
-    function levelID() {
-        if (lvl == 0){
-            document.getElementById("ce").style.display = "none";
-            document.getElementById("cep").style.display = "none";
-            document.getElementById("sr").style.display = "none";
-            document.getElementById("srp").style.display = "none";
-            document.getElementById("cr").style.display = "none";
-            document.getElementById("crp").style.display = "none";
-        }
-        else{
-            document.getElementById("ce").style.display = "block";
-            document.getElementById("cep").style.display = "block";
-            document.getElementById("sr").style.display = "block";
-            document.getElementById("srp").style.display = "block";
-            document.getElementById("cr").style.display = "block";
-            document.getElementById("crp").style.display = "block";
-        }
-    }
+	<div class="header">
+		<h1 class="primary-message">Main Menu</h1>
+	</div>
+		
+	<div id="main" class="main">
+		<div id="error" th:class="${#strings.isEmpty(errorMessage)} ? hidden : ''">
+			<h4 id="errorMessage" class="error-message" th:text="${errorMessage}"></h4>
+		</div>
 
-    function error() {
-        document.getElementById("err").style.marginLeft = "40px";
-        document.getElementById("err").style.color = "#f44336";
-        document.getElementById("err").style.fontSize = "large";
-        document.getElementById("err").innerHTML = "Functionality has not yet been implemented.";
-    }
-    function goToProductListing() {
-        location.assign(location.origin + '/productListing?lvl=' + lvl);
-    }
-    function goToEmployeeDetail() {
-        location.assign(location.origin + '/employeeDetail');
-    }
-    window.addEventListener('DOMContentLoaded', (event) => {
-        document.getElementById("st").addEventListener("click", error);
-        document.getElementById("vp").addEventListener("click", goToProductListing);
-        document.getElementById("ce").addEventListener("click", goToEmployeeDetail);
-        document.getElementById("sr").addEventListener("click", error);
-        document.getElementById("cr").addEventListener("click", error);
-        document.getElementById("so").addEventListener("click", exit);
-    });
-</script>
+		<div class="mainMenuActionsWrapper">
+			<br />
+			<button id="startTransactionButton" type="button" class="action" title="Functionality Not Available">Start Transaction</button>
+			<br /><br />
+			<button id="viewProductsButton" type="button" class="action">View Products</button>
+			<div th:class="not ${isElevatedUser} ? hidden : ''">
+				<br />
+				<button id="createEmployeeButton" type="button" class="action">Create Employee</button>
+				<br /><br />
+				<button id="productSalesReportButton" type="button" class="action" title="Functionality Not Available">Product Sales</button>
+				<br /><br />
+				<button id="cashierSalesReportButton" type="button" class="action" title="Functionality Not Available">Cashier Sales</button>
+			</div>
+		</div>
+	</div>
 
-<p id="err"></p>
+	<div class="hidden">
+		<input type="checkbox" id="isRefreshed" class="hidden">
+		<script type="text/javascript">
+			window.onunload = function() {
+				const isRefreshedElement = document.getElementById("isRefreshed");
 
-<div class="transbox">
-    <h1>Main Menu</h1>
-    <button id="st" class="button button1">Start Transaction</button>
-    <p id="stp"></p>
-    <button id="vp" class="button button1">View Products</button>
-    <p id="vpp"></p>
-    <button id="ce" class="button button1">Create Employee</button>
-    <p id="cep"></p>
-    <button id="sr" class="button button1">Sales Report</button>
-    <p id="srp"></p>
-    <button id="cr" class="button button1">Cashier Report</button>
-    <p id="crp"></p>
-    <button id="so" class="button button2">Sign Out</button>
-    <p id="sop"></p>
+				if(!isRefreshedElement.checked) {
+					isRefreshedElement.checked = true;
+				} else {
+					isRefreshedElement.checked = false;
+					location.reload();
+				}
+			}
+		</script>
+	</div>
 
-    <script>levelID();</script>
-</div>
-
+	<div class="footer">
+		<img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+	</div>
+		
 </body>
 
 </html>

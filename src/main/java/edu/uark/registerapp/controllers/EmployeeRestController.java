@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.employees.ActiveEmployeeExistsQuery;
 import edu.uark.registerapp.commands.employees.EmployeeCreateCommand;
@@ -38,51 +37,36 @@ public class EmployeeRestController extends BaseRestController {
 		ApiResponse canCreateEmployeeResponse;
 
 		try {
-			// TODO: Query if any active employees exist
-			activeUser.execute();
-			response.setStatus(HttpServletResponse.SC_FOUND);
+			this.activeEmployeeExistsQuery.execute();
+
 			canCreateEmployeeResponse =
 				this.redirectUserNotElevated(request, response);
 		} catch (final NotFoundException e) {
 			isInitialEmployee = true;
-			if (isInitialEmployee) {
-				/*createdEmployee
-					.setRedirectUrl(
-						ViewNames.SIGN_IN.getRoute().concat(
-							this.buildInitialQueryParameter(
-								"employeeId",//QueryParameterNames.EMPLOYEE_ID.getValue(),
-								createdEmployee.getEmployeeId())));*/
-				createEmployee.setApiEmployee(employee);
-			    createEmployee.setEmployeeId(isInitialEmployee);
-			    final Employee createdEmployee = createEmployee.execute();
-				createdEmployee.setRedirectUrl(ViewNames.SIGN_IN.getRoute());
-
-				return createdEmployee.setIsInitialEmployee(isInitialEmployee);
-			}
-			response.setStatus(HttpServletResponse.SC_FOUND);
 			canCreateEmployeeResponse = new ApiResponse();
-			canCreateEmployeeResponse.setRedirectUrl("/");
-			return canCreateEmployeeResponse;
 		}
 
 		if (!canCreateEmployeeResponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
 			return canCreateEmployeeResponse;
 		}
 
-		// TODO: Create an employee;
-		//final Employee createdEmployee = new Employee();
-		/*final Employee createdEmployee = createEmployee.execute();
-		createdEmployee.setRedirectUrl(ViewNames.SIGN_IN.getRoute().concat(
-				this.buildInitialQueryParameter(
-					"employeeId", createdEmployee.getEmployeeId())));*/
+		final Employee createdEmployee =
+			this.employeeCreateCommand
+				.setApiEmployee(employee)
+				.setIsInitialEmployee(isInitialEmployee)
+				.execute();
 
-		//return createdEmployee.setIsInitialEmployee(isInitialEmployee);
-		return canCreateEmployeeResponse;
+		if (isInitialEmployee) {
+			createdEmployee
+				.setRedirectUrl(
+					ViewNames.SIGN_IN.getRoute().concat(
+						this.buildInitialQueryParameter(
+							QueryParameterNames.EMPLOYEE_ID.getValue(),
+							createdEmployee.getEmployeeId())));
+		}
+
+		return createdEmployee.setIsInitialEmployee(isInitialEmployee);
 	}
-	@Autowired
-	private ActiveEmployeeExistsQuery activeUser;
-	@Autowired
-	private EmployeeCreateCommand createEmployee;
 
 	@RequestMapping(value = "/{employeeId}", method = RequestMethod.PATCH)
 	public @ResponseBody ApiResponse updateEmployee(
@@ -94,27 +78,23 @@ public class EmployeeRestController extends BaseRestController {
 
 		final ApiResponse elevatedUserResponse =
 			this.redirectUserNotElevated(request, response);
-		ApiResponse canCreateEmployeeResponse;
-		//ActiveEmployeeExistsQuery activeUser = new ActiveEmployeeExistsQuery();
-
-		try {
-			// TODO: Query if any active employees exist
-			activeUser.execute();
-		} catch (final NotFoundException e) {
-			response.setStatus(HttpServletResponse.SC_FOUND);
-			canCreateEmployeeResponse =
-					this.redirectUserNotElevated(request, response);
-		}
 		if (!elevatedUserResponse.getRedirectUrl().equals(StringUtils.EMPTY)) {
 			return elevatedUserResponse;
 		}
 
-		EmployeeUpdateCommand employeeUpdate = new EmployeeUpdateCommand();
-		employeeUpdate.setApiEmployee(employee);
-		employeeUpdate.setEmployeeId(employeeId);
-		employeeUpdate.execute();
-		// TODO: Update the employee
-		return employee;
+		return this.employeeUpdateCommand
+			.setEmployeeId(employeeId)
+			.setApiEmployee(employee)
+			.execute();
 	}
+
+	// Properties
+	@Autowired
+	private EmployeeCreateCommand employeeCreateCommand;
 	
+	@Autowired
+	private EmployeeUpdateCommand employeeUpdateCommand;
+	
+	@Autowired
+	private ActiveEmployeeExistsQuery activeEmployeeExistsQuery;
 }
