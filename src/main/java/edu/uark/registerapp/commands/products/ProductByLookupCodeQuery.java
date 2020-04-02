@@ -1,7 +1,5 @@
 package edu.uark.registerapp.commands.products;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Optional;
 
 import org.apache.commons.lang3.StringUtils;
@@ -28,17 +26,6 @@ public class ProductByLookupCodeQuery implements ResultCommandInterface<Product>
 		} else {
 			throw new NotFoundException("Product");
 		}
-	}
-
-	@Override
-	public List<Product> find() {
-		final LinkedList<Product> products = new LinkedList<Product>();
-
-		for (final ProductEntity productEntity : productRepository.findAll()) {
-			products.addLast(new Product(productEntity));
-		}
-
-		return products;
 	}
 
 	// Helper methods
