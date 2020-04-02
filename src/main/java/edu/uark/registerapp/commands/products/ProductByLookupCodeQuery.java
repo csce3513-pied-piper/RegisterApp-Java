@@ -34,7 +34,9 @@ public class ProductByLookupCodeQuery implements ResultCommandInterface<Product>
 		final LinkedList<Product> products = new LinkedList<Product>();
 
 		for (final ProductEntity productEntity : productRepository.findAll()) {
-			products.addLast(new Product(productEntity));
+			if(productEntity.getLookupCode().contains(this.lookupCode)) {
+				products.addLast(new Product(productEntity));
+			}
 		}
 
 		return products;
