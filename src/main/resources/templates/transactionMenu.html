@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction - Menu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="/styles/master.css">
+
+    <script type="text/javascript" src="/scripts/master.js" defer></script>
+    <script type="text/javascript" src="/scripts/signIn.js" defer></script>
+</head>
+<body>
+
+    <div class="header">
+        <h1 class="primary-message">Transaction</h1>
+    </div>
+
+    <div id="main" class="main">
+        <form action="/" method="POST" onsubmit="return validateForm();" class="inputContent">
+            <div>
+                <input type="text" placeholder="Search..">
+                <button type="submit">Submit</button>
+            </div>
+            <hr />
+            <br /><br /><br />
+            <hr />
+            <h4>Total:</h4>
+            <p id="total">$0.00</p>
+            <br/>
+            <div>
+                <button id="cancelButton" type="button" class="action">Cancel</button>
+                <button id="checkoutButton" type="button" class="action">Checkout</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>
