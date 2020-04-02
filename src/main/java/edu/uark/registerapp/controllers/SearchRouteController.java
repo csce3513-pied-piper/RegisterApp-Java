@@ -20,7 +20,7 @@ import edu.uark.registerapp.models.entities.ActiveUserEntity;
 
 @Controller
 @RequestMapping(value = "/search")
-public class ProductListingRouteController extends BaseRouteController {
+public class SearchRouteController extends BaseRouteController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showProductListing(
             @RequestParam final Map<String, String> queryParameters,
