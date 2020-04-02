@@ -7,25 +7,23 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import edu.uark.registerapp.commands.products.ProductsQuery;
+import edu.uark.registerapp.commands.products.ProductByLookupCodeQuery;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
 
 @Controller
-@RequestMapping(value = "/search")
+@RequestMapping(value = "/search/lookupcode={lookupCode}")
 public class SearchRouteController extends BaseRouteController {
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showProductListing(
             @RequestParam final Map<String, String> queryParameters,
-            final HttpServletRequest request
-    ) {
+            final HttpServletRequest request,
+            @PathVariable String lookupCode) {
 
         final Optional<ActiveUserEntity> activeUserEntity =
                 this.getCurrentUser(request);
@@ -43,6 +41,7 @@ public class SearchRouteController extends BaseRouteController {
                 this.isElevatedUser(activeUserEntity.get()));
 
         try {
+            this.productsQuery.setLookupCode(lookupCode);
             modelAndView.addObject(
                     ViewModelNames.PRODUCTS.getValue(),
                     this.productsQuery.execute());
@@ -60,5 +59,5 @@ public class SearchRouteController extends BaseRouteController {
 
     // Properties
     @Autowired
-    private ProductsQuery productsQuery;
+    private ProductByLookupCodeQuery productsQuery;
 }
