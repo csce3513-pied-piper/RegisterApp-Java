@@ -44,7 +44,7 @@ public class SearchRouteController extends BaseRouteController {
             this.productsQuery.setLookupCode(lookupCode);
             modelAndView.addObject(
                     ViewModelNames.PRODUCTS.getValue(),
-                    this.productsQuery.execute());
+                    this.productsQuery.find());
         } catch (final Exception e) {
             modelAndView.addObject(
                     ViewModelNames.ERROR_MESSAGE.getValue(),
