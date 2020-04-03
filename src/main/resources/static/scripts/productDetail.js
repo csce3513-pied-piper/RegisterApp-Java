@@ -179,6 +179,6 @@ function getProductCount() {
 	return Number(getProductCountElement().value);
 }
 function getProductCountElement() {
-	return document.getElementById("productCount");
+	return document.getElementById("productPrice");
 }
 // End getters and setters
