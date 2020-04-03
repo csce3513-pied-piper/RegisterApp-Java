@@ -28,7 +28,7 @@
                 <input type="hidden" name="productId" th:value="${product.id}" />
                 <span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
                 <br />&nbsp;&nbsp;<span class="productPriceDisplay" th:text="${product.price}">$4.99</span>
-                <br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="In stock: ${product.count}">0</span>
+                <br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.count}">0</span>
             </li>
         </ul>
     </div>
