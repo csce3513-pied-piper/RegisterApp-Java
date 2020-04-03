@@ -49,7 +49,7 @@ public class ProductDetailRouteController extends BaseRouteController {
 			true);
 		modelAndView.addObject(
 			ViewModelNames.PRODUCT.getValue(),
-			(new Product()).setLookupCode(StringUtils.EMPTY).setCount(0));
+			(new Product()).setLookupCode(StringUtils.EMPTY).setCount(0).setPrice(0));
 
 		return modelAndView;
 	}
@@ -89,7 +89,8 @@ public class ProductDetailRouteController extends BaseRouteController {
 				ViewModelNames.PRODUCT.getValue(),
 				(new Product())
 					.setCount(0)
-					.setLookupCode(StringUtils.EMPTY));
+					.setLookupCode(StringUtils.EMPTY)
+					.setPrice(0));
 		}
 
 		return modelAndView;
