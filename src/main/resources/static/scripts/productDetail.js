@@ -57,9 +57,9 @@ function saveActionClick(event) {
 		+ (productIdIsDefined ? productId : ""));
 	const saveProductRequest = {
 		id: productId,
-		price: getProductPrice(),
-		lookupCode: "French Fries",
-		count: 512307
+		price: 30000012,
+		lookupCode: getProductLookupCode(),
+		count: getProductCount()
 	};
 
 	if (productIdIsDefined) {
