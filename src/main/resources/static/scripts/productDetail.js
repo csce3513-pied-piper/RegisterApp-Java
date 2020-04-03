@@ -50,6 +50,7 @@ function saveActionClick(event) {
 		id: productId,
 		count: getProductCount(),
 		lookupCode: getProductLookupCode(),
+		createdon: "2020-04-03 17:03:10.470910",
 		price: getProductPrice()
 	};
 
