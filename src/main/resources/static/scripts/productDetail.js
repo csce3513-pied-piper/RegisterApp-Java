@@ -57,7 +57,7 @@ function saveActionClick(event) {
 		+ (productIdIsDefined ? productId : ""));
 	const saveProductRequest = {
 		id: productId,
-		price: 30000012,
+		price: BigInt(30000012),
 		lookupCode: getProductLookupCode(),
 		count: getProductCount()
 	};
