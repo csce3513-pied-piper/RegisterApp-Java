@@ -40,6 +40,17 @@ public class Product extends ApiResponse {
 		return this;
 	}
 
+	private long price;
+
+	public long getPrice() {
+		return this.price;
+	}
+
+	public Product setPrice(final long price) {
+		this.price = price;
+		return this;
+	}
+
 	private String createdOn;
 
 	public String getCreatedOn() {
