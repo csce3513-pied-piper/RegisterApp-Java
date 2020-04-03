@@ -13,7 +13,7 @@
 
 <body>
 <div class="header">
-    <h1 class="primary-message">Products Listing</h1>
+    <h1 id="searchTitle" class="primary-message">Products Listing</h1>
 </div>
 
 <div id="main" class="main">
@@ -22,11 +22,6 @@
     </div>
 
     <div class="productsWrapper">
-        <div th:class="not ${isElevatedUser} ? hidden : ''">
-            <a href="/productDetail/" class="button">Create New</a>
-        </div>
-
-        <br /><br />
 
         <ul id="productsListing" class="products">
             <li th:each="product : ${products}">
@@ -41,6 +36,7 @@
     <div class="hidden">
         <input type="checkbox" id="isRefreshed" class="hidden">
         <script type="text/javascript">
+            document.getElementById("searchTitle").innerHTML = "Search: ";
             window.onunload = function() {
                 const isRefreshedElement = document.getElementById("isRefreshed");
 
