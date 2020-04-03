@@ -106,6 +106,15 @@ function validateSave() {
 		return false;
 	}
 
+	const price = getProductPrice();
+	if ((price == null) || isNaN(price)) {
+		displayError("Please provide a valid product price.");
+		return false;
+	} else if (price < 0) {
+		displayError("Product price may not be negative.");
+		return false;
+	}
+
 	return true;
 }
 
