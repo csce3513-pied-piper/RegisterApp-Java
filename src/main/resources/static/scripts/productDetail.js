@@ -48,10 +48,9 @@ function saveActionClick(event) {
 		+ (productIdIsDefined ? productId : ""));
 	const saveProductRequest = {
 		id: productId,
-		count: getProductCount(),
+		price: getProductPrice(),
 		lookupCode: getProductLookupCode(),
-		createdon: "2020-04-03 17:03:10.470910",
-		price: getProductPrice()
+		count: getProductCount()
 	};
 
 	if (productIdIsDefined) {
