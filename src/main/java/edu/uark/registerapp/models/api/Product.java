@@ -1,5 +1,6 @@
 package edu.uark.registerapp.models.api;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
@@ -79,13 +80,19 @@ public class Product extends ApiResponse {
 		this.setCreatedOn(LocalDateTime.now());
 	}
 
+	private String stock;
+	private String dollars;
+
 	public Product(final ProductEntity productEntity) {
 		super(false);
 
 		this.id = productEntity.getId();
 		this.count = productEntity.getCount();
+		this.stock = "In stock: " + this.count;
 		this.lookupCode = productEntity.getLookupCode();
 		this.price = productEntity.getPrice();
+		BigDecimal payment = new BigDecimal(this.price).movePointLeft(2);
+		this.dollars = "$" + payment;
 		this.setCreatedOn(productEntity.getCreatedOn());
 	}
 }
