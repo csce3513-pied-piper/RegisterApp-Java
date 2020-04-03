@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	getProductCountElement().addEventListener("keypress", productCountKeypress);
 	productLookupCodeElement.addEventListener("keypress", productLookupCodeKeypress);
+	getProductPriceElement().addEventListener("keypress", productPriceKeypress);
 	
 	getSaveActionElement().addEventListener("click", saveActionClick);
 	getDeleteActionElement().addEventListener("click", deleteActionClick);
@@ -26,6 +27,14 @@ function productLookupCodeKeypress(event) {
 }
 
 function productCountKeypress(event) {
+	if (event.which !== 13) { // Enter key
+		return;
+	}
+
+	saveActionClick();
+}
+
+function productPriceKeypress(event) {
 	if (event.which !== 13) { // Enter key
 		return;
 	}
