@@ -36,7 +36,7 @@
     <div class="hidden">
         <input type="checkbox" id="isRefreshed" class="hidden">
         <script type="text/javascript">
-            document.getElementById("searchTitle").innerHTML = "Search: ";
+            document.getElementById("searchTitle").innerHTML = "Search: " + window.location.toString().split("=").pop();
             window.onunload = function() {
                 const isRefreshedElement = document.getElementById("isRefreshed");
 
