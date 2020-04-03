@@ -49,7 +49,8 @@ function saveActionClick(event) {
 	const saveProductRequest = {
 		id: productId,
 		count: getProductCount(),
-		lookupCode: getProductLookupCode()
+		lookupCode: getProductLookupCode(),
+		price: getProductPrice()
 	};
 
 	if (productIdIsDefined) {
@@ -158,6 +159,13 @@ function setProductId(productId) {
 }
 function getProductIdElement() {
 	return document.getElementById("productId");
+}
+
+function getProductPrice() {
+	return getProductPriceElement().value;
+}
+function getProductPriceElement() {
+	return document.getElementById("productPrice");
 }
 
 function getProductLookupCode() {
