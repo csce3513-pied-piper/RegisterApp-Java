@@ -28,7 +28,5 @@ function findClickedListItemElement(clickedTarget) {
 function productClick(event) {
     let listItem = findClickedListItemElement(event.target);
 
-    window.location.assign(
-        "/productDetail/"
-        + listItem.querySelector("input[name='productId'][type='hidden']").value);
+    window.location.assign("/transactionMenu");
 }
