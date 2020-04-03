@@ -81,18 +81,27 @@ public class Product extends ApiResponse {
 	}
 
 	private String stock;
+
+	public String getStock() {
+		return this.stock;
+	}
+
 	private String dollars;
+
+	public String getDollars() {
+		return this.dollars;
+	}
 
 	public Product(final ProductEntity productEntity) {
 		super(false);
 
 		this.id = productEntity.getId();
 		this.count = productEntity.getCount();
-		this.stock = "In stock: ";
+		this.stock = "In stock: " + this.count;
 		this.lookupCode = productEntity.getLookupCode();
 		this.price = productEntity.getPrice();
 		BigDecimal payment = new BigDecimal(this.price).movePointLeft(2);
-		this.dollars = "$";
+		this.dollars = "$" + payment;
 		this.setCreatedOn(productEntity.getCreatedOn());
 	}
 }
