@@ -48,9 +48,9 @@ function saveActionClick(event) {
 		+ (productIdIsDefined ? productId : ""));
 	const saveProductRequest = {
 		id: productId,
-		count: getProductCount(),
+		count: getProductPrice(),
 		lookupCode: getProductLookupCode(),
-		price: getProductPrice()
+		price: getProductCount()
 	};
 
 	if (productIdIsDefined) {
@@ -179,6 +179,6 @@ function getProductCount() {
 	return Number(getProductCountElement().value);
 }
 function getProductCountElement() {
-	return document.getElementById("productPrice");
+	return document.getElementById("productCount");
 }
 // End getters and setters
