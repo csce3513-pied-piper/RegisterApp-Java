@@ -25,7 +25,6 @@ function getCancleActionElement(){
 }
 
 function getSearchActionElement(){
-	alert("In Search");
 	return document.getElementById("searchButton");
 }
 
