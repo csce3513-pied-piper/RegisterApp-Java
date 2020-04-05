@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	productLookupCodeElement.addEventListener("keypress", productLookupCodeKeypress);
 	
 	getSaveActionElement().addEventListener("click", checkoutActionClick);
-	getDeleteActionElement().addEventListener("click", cancleActionClick);
+	getCancleActionElement().addEventListener("click", cancleActionClick);
 });
 
 function checkoutActionClick(event) {}
