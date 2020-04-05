@@ -6,6 +6,10 @@ document.addEventListener("DOMContentLoaded", () => {
 		() => { 
 		alert("In function");
 		window.location.assign("/mainMenu"); });
+		
+	getSearchActionElement().addEventListener(
+		"click",
+		() => { window.location.assign("/search/lookupcode=" + getLookUpCode()); });	
 });
 
 function checkoutActionClick(event) {}
@@ -18,4 +22,13 @@ function cancleActionClick(event) {
 function getCancleActionElement(){
 	alert("In get function");
 	return document.getElementById("cancelButton");
+}
+
+function getSearchActionElement(){
+	alert("In Search");
+	return document.getElementById("searchButton");
+}
+
+function getLookUpCode(){
+	return document.getElementById("lookup").value;
 }
