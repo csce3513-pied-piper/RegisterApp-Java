@@ -1,18 +1,21 @@
 document.addEventListener("DOMContentLoaded", () => {
-	const productLookupCodeElement = getProductLookupCodeElement();
-	
-	productLookupCodeElement.addEventListener("keypress", productLookupCodeKeypress);
-	
-	getSaveActionElement().addEventListener("click", checkoutActionClick);
 	getCancleActionElement().addEventListener("click", cancleActionClick);
+	
+	getCancleActionElement().addEventListener(
+		"click",
+		() => { 
+		alert("In function");
+		window.location.assign("/mainMenu"); });
 });
 
 function checkoutActionClick(event) {}
 
-function cancelActionClick(event) {
-	window.location.assign("/MainMenu");
+function cancleActionClick(event) {
+	alert("In function");
+	window.location.assign("/mainMenu");
 }
 
 function getCancleActionElement(){
+	alert("In get function");
 	return document.getElementById("cancelButton");
 }
