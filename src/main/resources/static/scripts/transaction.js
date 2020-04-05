@@ -9,4 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function checkoutActionClick(event) {}
 
-function cancelActionClick(event) {}
+function cancelActionClick(event) {
+	window.location.assign("/MainMenu");
+}
+
+function getCancleActionElement(){
+	return document.getElementById("cancelButton");
+}
