@@ -29,12 +29,12 @@ function saveActionClick(event) {
     let listItem = findClickedListItemElement(event.target);
     const productId = listItem.querySelector("input[name='productId'][type='hidden']").value;
 
-    const saveActionUrl = ("/entity/transactionEntry/");
+    const saveActionUrl = ("/entity/transactionEntry/" + productId);
     const saveTransactionEntryRequest = {
         productid: productId
     };
 
     ajaxPost(saveActionUrl, saveTransactionEntryRequest, (callbackResponse) => {
-        if (isSuccessResponse(callbackResponse)) {window.location.replace("/transactionMenu?=" + productId);}
+        if (isSuccessResponse(callbackResponse)) {window.location.replace("/transactionMenu");}
     });
 }

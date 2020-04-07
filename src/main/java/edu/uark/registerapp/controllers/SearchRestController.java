@@ -22,14 +22,16 @@ import edu.uark.registerapp.models.api.Product;
 @RestController
 @RequestMapping(value = "/entity/transactionEntry")
 public class SearchRestController extends BaseRestController {
-    @RequestMapping(value = "/", method = RequestMethod.POST)
+    @RequestMapping(value = "/{productId}", method = RequestMethod.POST)
     public @ResponseBody ApiResponse createProduct(
+            @PathVariable final UUID productId,
             @RequestBody final Product product,
             final HttpServletRequest request,
             final HttpServletResponse response
     ) {
 
         return this.transactionEntryCreateCommand
+                .setProductId(productId)
                 .setApiProduct(product)
                 .execute();
     }
