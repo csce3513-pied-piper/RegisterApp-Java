@@ -25,12 +25,6 @@ function findClickedListItemElement(clickedTarget) {
     }
 }
 
-function productClick(event) {
-    let listItem = findClickedListItemElement(event.target);
-
-    window.location.assign("/transactionMenu");
-}
-
 function saveActionClick(event) {
     let listItem = findClickedListItemElement(event.target);
     const productId = listItem.querySelector("input[name='productId'][type='hidden']").value;
@@ -41,6 +35,6 @@ function saveActionClick(event) {
     };
 
     ajaxPost(saveActionUrl, saveTransactionEntryRequest, (callbackResponse) => {
-        if (isSuccessResponse(callbackResponse)) {window.location.replace("/transactionMenu");}
+        if (isSuccessResponse(callbackResponse)) {window.location.replace("/transactionMenu?=" + productId);}
     });
 }
