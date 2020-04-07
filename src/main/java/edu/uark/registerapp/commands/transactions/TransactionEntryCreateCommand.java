@@ -38,10 +38,7 @@ public class TransactionEntryCreateCommand implements ResultCommandInterface<Pro
         }
 
         // Synchronize any incoming changes for UPDATE to the database.
-        this.apiProduct = productEntity.get().synchronize(this.apiProduct);
-
-        // Write, via an UPDATE, any changes to the database.
-        this.productRepository.save(productEntity.get());
+        this.apiProduct = new Product(productEntity.get());
 
         final List<TransactionEntryEntity> queriedTransactionEntryEntity =
                 this.transactionEntryRepository
