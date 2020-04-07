@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import edu.uark.registerapp.models.api.Product;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
 
@@ -101,5 +102,13 @@ public class TransactionEntryEntity {
 		this.quantity = quantity;
 		this.productId = productId;
 		this.transactionId = transactionId;
+	}
+
+	public TransactionEntryEntity(final Product apiProduct) {
+		this.price = 0L;
+		this.productId = apiProduct.getId();
+		this.quantity = 0D;
+		this.id = new UUID(0, 0);
+		this.transactionId = new UUID(0, 0);
 	}
 }
