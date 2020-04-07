@@ -30,7 +30,7 @@ public class TransactionEntryCreateCommand implements ResultCommandInterface<Pro
     }
 
     @Transactional
-    private TransactionEntryEntity createTransactionEntryEntity() {
+    public TransactionEntryEntity createTransactionEntryEntity() {
         final Optional<ProductEntity> productEntity =
                 this.productRepository.findById(this.productId);
         if (!productEntity.isPresent()) { // No record with the associated record ID exists in the database.
@@ -65,5 +65,7 @@ public class TransactionEntryCreateCommand implements ResultCommandInterface<Pro
 
     @Autowired
     private TransactionEntryRepository transactionEntryRepository;
+
+    @Autowired
     private ProductRepository productRepository;
 }
