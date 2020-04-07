@@ -29,9 +29,11 @@ public class SearchRestController extends BaseRestController {
             final HttpServletResponse response
     ) {
 
-        return this.transactionEntryCreateCommand
+        this.transactionEntryCreateCommand
                 .setProductId(productId)
                 .execute();
+
+        return new ApiResponse();
     }
 
     // Properties

@@ -26,21 +26,26 @@ public class TransactionEntryCreateCommand implements ResultCommandInterface<Pro
     public Product execute() {
         final TransactionEntryEntity createdTransactionEntryEntity = this.createTransactionEntryEntity();
 
-        return this.apiProduct;
+        return new Product();
     }
 
     @Transactional
     private TransactionEntryEntity createTransactionEntryEntity() {
+        final Optional<ProductEntity> productEntity =
+                this.productRepository.findById(this.productId);
+        if (!productEntity.isPresent()) { // No record with the associated record ID exists in the database.
+            throw new NotFoundException("Product");
+        }
+
         final List<TransactionEntryEntity> queriedTransactionEntryEntity =
                 this.transactionEntryRepository
                         .findByProductId(this.productId);
-
         if (queriedTransactionEntryEntity.size()>0) {
             // Product ID already defined for another transactionEntry.
             throw new ConflictException("ID");
         }
 
-        // No ENTITY object was returned from the database, thus the API object's
+        // No ENTITY object was returned from the database, thus the Product's
         // ID must be unique.
 
         // Write, via an INSERT, the new record to the database.
@@ -55,15 +60,6 @@ public class TransactionEntryCreateCommand implements ResultCommandInterface<Pro
     }
     public TransactionEntryCreateCommand setProductId(final UUID productId) {
         this.productId = productId;
-        return this;
-    }
-
-    private Product apiProduct;
-    public Product getApiProduct() {
-        return this.apiProduct;
-    }
-    public TransactionEntryCreateCommand setApiProduct(final Product apiProduct) {
-        this.apiProduct = apiProduct;
         return this;
     }
 
