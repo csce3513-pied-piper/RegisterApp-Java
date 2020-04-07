@@ -104,9 +104,9 @@ public class TransactionEntryEntity {
 		this.transactionId = transactionId;
 	}
 
-	public TransactionEntryEntity(final Product apiProduct) {
+	public TransactionEntryEntity(final UUID productId) {
 		this.price = 0L;
-		this.productId = apiProduct.getId();
+		this.productId = productId;
 		this.quantity = 0D;
 		this.id = new UUID(0, 0);
 		this.transactionId = new UUID(0, 0);

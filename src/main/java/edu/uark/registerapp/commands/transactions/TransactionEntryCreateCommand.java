@@ -31,18 +31,9 @@ public class TransactionEntryCreateCommand implements ResultCommandInterface<Pro
 
     @Transactional
     private TransactionEntryEntity createTransactionEntryEntity() {
-        final Optional<ProductEntity> productEntity =
-                this.productRepository.findById(this.productId);
-        if (!productEntity.isPresent()) { // No record with the associated record ID exists in the database.
-            throw new NotFoundException("Product");
-        }
-
-        // Synchronize any incoming changes for UPDATE to the database.
-        this.apiProduct = new Product(productEntity.get());
-
         final List<TransactionEntryEntity> queriedTransactionEntryEntity =
                 this.transactionEntryRepository
-                        .findByProductId(this.apiProduct.getId());
+                        .findByProductId(this.productId);
 
         if (queriedTransactionEntryEntity.size()>0) {
             // Product ID already defined for another transactionEntry.
@@ -54,7 +45,7 @@ public class TransactionEntryCreateCommand implements ResultCommandInterface<Pro
 
         // Write, via an INSERT, the new record to the database.
         return this.transactionEntryRepository.save(
-                new TransactionEntryEntity(apiProduct));
+                new TransactionEntryEntity(productId));
     }
 
     // Properties
