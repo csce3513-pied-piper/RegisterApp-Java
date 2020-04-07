@@ -28,8 +28,9 @@ function findClickedListItemElement(clickedTarget) {
 function saveActionClick(event) {
     let listItem = findClickedListItemElement(event.target);
     const productId = listItem.querySelector("input[name='productId'][type='hidden']").value;
+    const productIdIsDefined = ((productId != null) && (productId.trim() !== ""));
 
-    const saveActionUrl = ("/entity/transactionEntry/" + productId);
+    const saveActionUrl = ("/entity/transactionEntry/" + (productIdIsDefined ? productId : ""));
     const saveTransactionEntryRequest = {
         productid: productId
     };
