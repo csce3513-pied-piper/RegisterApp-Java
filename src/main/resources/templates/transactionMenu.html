@@ -33,9 +33,9 @@
 					<span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
 					<br />&nbsp;&nbsp;<span class="productPriceDisplay" th:text="${product.dollars}">$4.99</span>
                     <br />&nbsp;&nbsp;<span class="transactionEntryQuantityDisplay" th:text="${transactionEntries[productStat.index].quantity}">2</span>
-					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.stock}">0</span>
                     <button class="plus-btn" type="button" id="plusButton">+</button>
                     <button class="minus-btn" type="button" id="minusButton">-</button>
+					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.stock}">0</span>
 				</li>
 				</ul>
 			</div>
