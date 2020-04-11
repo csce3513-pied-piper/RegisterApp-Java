@@ -14,23 +14,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.uark.registerapp.commands.transactions.TransactionEntryCreateCommand;
+import edu.uark.registerapp.commands.transactions.TransactionEntryClearCommand;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.ApiResponse;
 import edu.uark.registerapp.models.api.Product;
 
 @RestController
 @RequestMapping(value = "/entity/transactionEntry")
-public class SearchRestController extends BaseRestController {
-    @RequestMapping(value = "/{productId}", method = RequestMethod.POST)
-    public @ResponseBody ApiResponse createTransactionEntry(
-            @PathVariable final UUID productId,
+public class TransactionRestController extends BaseRestController {
+    @RequestMapping(value = "/clear", method = RequestMethod.DELETE)
+    public @ResponseBody ApiResponse clearTransactionEntry(
             final HttpServletRequest request,
             final HttpServletResponse response
     ) {
 
-        this.transactionEntryCreateCommand
-                .setProductId(productId)
+        this.transactionEntryClearCommand
                 .execute();
 
         return new ApiResponse();
@@ -38,5 +36,5 @@ public class SearchRestController extends BaseRestController {
 
     // Properties
     @Autowired
-    private TransactionEntryCreateCommand transactionEntryCreateCommand;
+    private TransactionEntryClearCommand transactionEntryClearCommand;
 }

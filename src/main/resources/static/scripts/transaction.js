@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 	//Cancel button functionality
-	getCancleActionElement().addEventListener(
-		"click",
-		() => {window.location.assign("/mainMenu"); });
+	getCancleActionElement().addEventListener("click", clear);
 		
 	getSearchActionElement().addEventListener(
 		"click",
@@ -21,4 +19,15 @@ function getSearchActionElement(){
 
 function getLookUpCode(){
 	return document.getElementById("lookup").value;
+}
+
+function clear() {
+	const saveActionUrl = ("/entity/transactionEntry/clear");
+	const saveTransactionEntryRequest = {
+		productId: "yolo"
+	};
+
+	ajaxDelete(saveActionUrl, saveTransactionEntryRequest, (callbackResponse) => {
+		if (isSuccessResponse(callbackResponse)) {window.location.replace("/mainMenu");}
+	});
 }
