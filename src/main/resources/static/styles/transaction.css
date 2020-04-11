@@ -10,7 +10,6 @@
 }
 
 .products li {
-    cursor: pointer;
     background-color: #EEE;
     margin: .5em;
     padding: .3em;
