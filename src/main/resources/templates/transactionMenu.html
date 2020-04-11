@@ -15,50 +15,52 @@
 </head>
 <body>
 
-    <div class="header">
-        <h1 class="primary-message">Transaction</h1>
-    </div>
+<div class="header">
+    <h1 class="primary-message">Transaction</h1>
+</div>
 
-    <div id="main" class="main">
-        <div>
-            <input style="padding: 5px;
-                          border: 1px solid grey;
-                          background: #f1f1f1;" id="lookup" type="text" placeholder="Search...">
-            <button style="padding: 5px;
-                          background: #2196F3;
-                          color: white;
-                          border: 1px solid grey;
-                          cursor: pointer;" id="searchButton" type="button"><i class="fa fa-search"></i></button>
-        </div>
-        <br />
-        <hr />
-        <div class="productsWrapper">
-            <ul id="productsListing" class="products">
-            <li th:each="product : ${products}">
-                <input type="hidden" name="transactionEntryId" th:value="${transactionEntries[productStat.index].id}" />
-                <input type="hidden" name="productId" th:value="${product.id}" />
-                <span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
-                <button style="float:right; border-radius: 50%; border: 1px solid black; background-color: lightcoral; cursor: pointer;" type="button" class="deleteBtn">⨯</button>
-                <br />&nbsp;&nbsp;<span class="productPriceDisplay" th:text="${product.dollars}">$4.99</span>
-                <br />&nbsp;&nbsp;<span class="transactionEntryQuantityDisplay" th:text="${'Quantity: ' + transactionEntries[productStat.index].quantity}">2</span>
-                <button style="border-radius: 12px; border: 1px solid black; background-color: lightgreen; cursor: pointer;" type="button" class="plusBtn">+</button>
-                <button style="border-radius: 12px; border: 1px solid black; background-color: lightcoral; cursor: pointer;" type="button" class="minusBtn">−</button>
-                <button style="float:right; border: 1px solid black;" type="button" class="transactionEntryPriceDisplay" th:text="${'$' + new java.math.BigDecimal(transactionEntries[productStat.index].price).movePointLeft(2)}">$2.98</button>
-                <br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.stock}">0</span>
-            </li>
-            </ul>
-        </div>
-        <hr />
-        <h4>Total:</h4>
-        <p id="total">$0.00</p>
-        <br/>
-        <div>
-            <button id="checkoutButton" type="button" class="action">Checkout</button>
-            <button id="cancelButton" type="button" class="action">Cancel</button>
-        </div>
+<div id="main" class="main">
+    <div>
+        <input style="padding: 5px;
+                      border: 1px solid grey;
+                      background: #f1f1f1;" id="lookup" type="text" placeholder="Search...">
+        <button style="padding: 5px;
+                      background: #2196F3;
+                      color: white;
+                      border: 1px solid grey;
+                      cursor: pointer;" id="searchButton" type="button"><i class="fa fa-search"></i></button>
     </div>
-    <div class="footer">
-        <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+    <br />
+    <hr />
+    <div class="productsWrapper">
+        <ul id="productsListing" class="products">
+        <li th:each="product : ${products}">
+            <input type="hidden" name="transactionEntryId" th:value="${transactionEntries[productStat.index].id}" />
+            <input type="hidden" name="productId" th:value="${product.id}" />
+            <span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
+            <button style="float:right; border-radius: 50%; border: 1px solid black; background-color: lightcoral; cursor: pointer;" type="button" class="deleteBtn">⨯</button>
+            <br />&nbsp;&nbsp;<span class="productPriceDisplay" th:text="${product.dollars}">$4.99</span>
+            <br />&nbsp;&nbsp;<span class="transactionEntryQuantityDisplay" th:text="${'Quantity: ' + transactionEntries[productStat.index].quantity}">2</span>
+            <button style="border-radius: 12px; border: 1px solid black; background-color: lightgreen; cursor: pointer;" type="button" class="plusBtn">+</button>
+            <button style="border-radius: 12px; border: 1px solid black; background-color: lightcoral; cursor: pointer;" type="button" class="minusBtn">−</button>
+            <button style="float:right; border: 1px solid black;" type="button" class="transactionEntryPriceDisplay" th:text="${'$' + new java.math.BigDecimal(transactionEntries[productStat.index].price).movePointLeft(2)}">$2.98</button>
+            <br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.stock}">0</span>
+        </li>
+        </ul>
     </div>
+    <hr />
+    <h4>Total:</h4>
+    <p id="total">$0.00</p>
+    <br/>
+    <div>
+        <button id="checkoutButton" type="button" class="action">Checkout</button>
+        <button id="cancelButton" type="button" class="action">Cancel</button>
+    </div>
+</div>
+
+<div class="footer">
+    <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
+</div>
+
 </body>
 </html>
