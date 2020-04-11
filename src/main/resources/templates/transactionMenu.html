@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" type="text/css" href="/styles/master.css">
+    <link rel="stylesheet" type="text/css" href="/styles/transaction.css">
 
     <script type="text/javascript" src="/scripts/master.js" defer></script>
     <script type="text/javascript" src="/scripts/transaction.js" defer></script>
@@ -27,12 +28,14 @@
             <div class="productsWrapper">
 				<ul id="productsListing" class="products">
 				<li th:each="product : ${products}">
+                    <input type="hidden" name="transactionEntryId" th:value="${transactionEntries[productStat.index].id}" />
 					<input type="hidden" name="productId" th:value="${product.id}" />
 					<span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
 					<br />&nbsp;&nbsp;<span class="productPriceDisplay" th:text="${product.dollars}">$4.99</span>
+                    <br />&nbsp;&nbsp;<span class="transactionEntryQuantityDisplay" th:text="${transactionEntries[productStat.index].quantity}">2</span>
 					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.stock}">0</span>
-					<button class="minus-btn" type="button" id="minusButton">-</button>
-					<button class="plus-btn" type="button" id="plusButton">+</button>	
+                    <button class="plus-btn" type="button" id="plusButton">+</button>
+                    <button class="minus-btn" type="button" id="minusButton">-</button>
 				</li>
 				</ul>
 			</div>
