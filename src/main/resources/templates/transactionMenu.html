@@ -31,7 +31,7 @@
                       cursor: pointer;" id="searchButton" type="button"><i class="fa fa-search"></i></button>
     </div>
     <br />
-    <hr />
+    <hr width="50%" />
     <div class="productsWrapper">
         <ul id="productsListing" class="products">
         <li th:each="product : ${products}">
@@ -48,7 +48,7 @@
         </li>
         </ul>
     </div>
-    <hr />
+    <hr width="50%" />
     <h4>Total:</h4>
     <p id="total">$0.00</p>
     <br/>
@@ -58,7 +58,9 @@
     </div>
 </div>
 
-<img style="float:right;" id="signOutImage" src="https://i.ibb.co/h11fbwj/pngwave.png" alt="Sign Out" class="footer" />
+<div class="footer">
+    <img id="signOutImage" src="https://i.ibb.co/h11fbwj/pngwave.png" alt="Sign Out" class="footer" />
+</div>
 
 </body>
 </html>
