@@ -44,7 +44,7 @@
                     <br />&nbsp;&nbsp;<span class="transactionEntryQuantityDisplay" th:text="${'Quantity: ' + transactionEntries[productStat.index].quantity}">2</span>
                     <button style="border-radius: 12px; border: 1px solid black; background-color: lightgreen; cursor: pointer;" type="button" class="plusBtn">+</button>
                     <button style="border-radius: 12px; border: 1px solid black; background-color: lightcoral; cursor: pointer;" type="button" class="minusBtn">−</button>
-                    <span style="padding-left: 10em;" class="transactionEntryPriceDisplay" th:text="${'$' + (transactionEntries[productStat.index].price/100)}">$2.98</span>
+                    <button style="float:right; border: 1px solid black;" type="button" class="transactionEntryPriceDisplay" th:text="${'$' + (transactionEntries[productStat.index].price/100)}">$2.98</button>
 					<br />&nbsp;&nbsp;<span class="productCountDisplay" th:text="${product.stock}">0</span>
 				</li>
 				</ul>
