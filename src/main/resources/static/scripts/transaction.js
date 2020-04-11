@@ -20,7 +20,7 @@ function displayTotal() {
 		}
 	}
 
-	document.getElementById("total").innerHTML = "$" + new java.math.BigDecimal(total).movePointLeft(2);
+	document.getElementById("total").innerHTML = "$" + total;
 }
 
 function getCancleActionElement(){
