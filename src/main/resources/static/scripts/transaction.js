@@ -11,7 +11,7 @@ function checkoutActionClick(event) {}
 
 function displayTotal() {
 	const productListElements = document.getElementById("productsListing").children;
-	var total = 0;
+	var total = 350;
 
 	for (let i = 0; i < productListElements.length; i++) {
 		var priceList = productListElements[i].getElementsByClassName("price");
