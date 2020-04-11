@@ -2,7 +2,6 @@ package edu.uark.registerapp.models.entities;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
-import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -72,18 +71,6 @@ public class TransactionEntryEntity {
 
 	public TransactionEntryEntity setPrice(final long price) {
 		this.price = price;
-		return this.setDollars(price);
-	}
-
-	private String dollars;
-
-	public String getDollars() {
-		return this.dollars;
-	}
-
-	public TransactionEntryEntity setDollars(final long price) {
-		BigDecimal payment = new BigDecimal(price).movePointLeft(2);
-		this.dollars = "$" + payment;
 		return this;
 	}
 
@@ -97,8 +84,6 @@ public class TransactionEntryEntity {
 
 	public TransactionEntryEntity() {
 		this.price = 0L;
-		BigDecimal payment = new BigDecimal(this.price).movePointLeft(2);
-		this.dollars = "$" + payment;
 		this.quantity = 0D;
 		this.id = new UUID(0, 0);
 		this.productId = new UUID(0, 0);
@@ -113,8 +98,6 @@ public class TransactionEntryEntity {
 	) {
 
 		this.price = price;
-		BigDecimal payment = new BigDecimal(this.price).movePointLeft(2);
-		this.dollars = "$" + payment;
 		this.id = new UUID(0, 0);
 		this.quantity = quantity;
 		this.productId = productId;
@@ -123,8 +106,6 @@ public class TransactionEntryEntity {
 
 	public TransactionEntryEntity(final UUID productId) {
 		this.price = 0L;
-		BigDecimal payment = new BigDecimal(this.price).movePointLeft(2);
-		this.dollars = "$" + payment;
 		this.productId = productId;
 		this.quantity = 0D;
 		this.id = new UUID(0, 0);
