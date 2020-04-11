@@ -13,14 +13,14 @@ function displayTotal() {
 	const productListElements = document.getElementById("productsListing").children;
 	var total = 350;
 
-	for (let i = 0; i < productListElements.length; i++) {
+	/*for (let i = 0; i < productListElements.length; i++) {
 		var priceList = productListElements[i].getElementsByClassName("price");
 		for (let j = 0; j < priceList.length; j++) {
 			total = total + priceList[j].value;
 		}
-	}
+	}*/
 
-	document.getElementById("total").innerHTML = "$" + total;
+	document.getElementById("total").innerHTML = "$" + total/100;
 }
 
 function getCancleActionElement(){
