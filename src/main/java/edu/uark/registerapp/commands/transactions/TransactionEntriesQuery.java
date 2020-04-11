@@ -4,7 +4,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 import edu.uark.registerapp.commands.exceptions.NotFoundException;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import java.util.UUID;
 import java.util.Optional;
 
@@ -36,7 +37,7 @@ public class TransactionEntriesQuery implements ResultCommandInterface<Pair<List
             }
         }
 
-        return new Pair<List<TransactionEntryEntity>, List<Product>>(transactionEntryEntities, products);
+        return new ImmutablePair<>(transactionEntryEntities, products);
     }
 
     @Autowired

@@ -5,7 +5,8 @@ import java.util.Map;
 import java.util.Optional;
 
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.Pair;
+import org.apache.commons.lang3.tuple.ImmutablePair;
 
 import javax.servlet.http.HttpServletRequest;
 
