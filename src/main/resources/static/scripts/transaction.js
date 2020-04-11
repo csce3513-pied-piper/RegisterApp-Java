@@ -22,12 +22,8 @@ function getLookUpCode(){
 }
 
 function clear() {
-	const saveActionUrl = ("/entity/transactionEntry/clear");
-	const saveTransactionEntryRequest = {
-		productId: "yolo"
-	};
-
-	ajaxDelete(saveActionUrl, saveTransactionEntryRequest, (callbackResponse) => {
+	const deleteActionUrl = ("/entity/transactionEntry/clear");
+	ajaxDelete(deleteActionUrl, (callbackResponse) => {
 		if (isSuccessResponse(callbackResponse)) {window.location.replace("/mainMenu");}
 	});
 }
