@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	getSearchActionElement().addEventListener(
 		"click",
 		() => { window.location.assign("/search/lookupcode=" + getLookUpCode()); });	
-});
+})
+displayTotal();
 
 function checkoutActionClick(event) {}
 
