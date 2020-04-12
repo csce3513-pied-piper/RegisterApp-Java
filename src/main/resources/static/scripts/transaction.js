@@ -63,7 +63,7 @@ displayTotal();
 
 function saveTransaction() {
 	const cashierId = document.getElementById("employeeId").value;
-	const transactionReferenceId = document.getElementById("transactionReferenceId").value;
+	const transactionReferenceId = document.getElementsByClassName("transactionReferenceId")[0].value;
 	const saveActionUrl = ("/entity/transactionEntry/save/" + cashierId + "/" + transactionReferenceId);
 	const saveTransactionRequest = {
 		total: 0

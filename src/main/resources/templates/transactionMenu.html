@@ -35,6 +35,7 @@
         <ul id="productsListing" class="products">
         <li th:each="product : ${products}">
             <input type="hidden" class = "transactionEntryId" name="transactionEntryId" th:value="${transactionEntries[productStat.index].id}" />
+            <input type="hidden" class="transactionReferenceId" name="transactionReferenceId" th:value="${transactionEntries[productStat.index].transactionId}" />
             <input type="hidden" name="productId" th:value="${product.id}" />
             <input type="hidden" class = "price" name="price" th:value="${transactionEntries[productStat.index].price}" />
             <span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
@@ -59,7 +60,6 @@
 </div>
 
 <input type="hidden" id="employeeId" name="employeeId" th:value="${employee.id}" />
-<input type="hidden" id="transactionReferenceId" name="transactionReferenceId" th:value="${transactionEntries[0].transactionId}" />
 
 <div class="footer">
     <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
