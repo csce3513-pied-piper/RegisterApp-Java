@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 function checkoutActionClick(event) {}
 
 function displayTotal() {
-	const productListElements = document.getElementById("productsListing").children;
+	//const productListElements = document.getElementById("productsListing").children;
 	var total = 350;
 
 	/*for (let i = 0; i < productListElements.length; i++) {
@@ -20,7 +20,9 @@ function displayTotal() {
 		}
 	}*/
 
-	document.getElementById("total").innerHTML = "$" + total/100;
+	total = total/100;
+	total = total.toFixed(2);
+	document.getElementById("total").innerHTML = "$" + total;
 }
 
 function getCancleActionElement(){
