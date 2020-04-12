@@ -11,15 +11,15 @@ displayTotal();
 function checkoutActionClick(event) {}
 
 function displayTotal() {
-	//const productListElements = document.getElementById("productsListing").children;
-	var total = 350;
+	const productListElements = document.getElementById("productsListing").children;
+	var total = 0;
 
-	/*for (let i = 0; i < productListElements.length; i++) {
+	for (let i = 0; i < productListElements.length; i++) {
 		var priceList = productListElements[i].getElementsByClassName("price");
 		for (let j = 0; j < priceList.length; j++) {
 			total = total + priceList[j].value;
 		}
-	}*/
+	}
 
 	total = total/100;
 	total = total.toFixed(2);
