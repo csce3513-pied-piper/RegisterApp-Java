@@ -22,6 +22,7 @@ import edu.uark.registerapp.commands.exceptions.UnprocessableEntityException;
 import edu.uark.registerapp.models.entities.TransactionEntryEntity;
 import edu.uark.registerapp.models.repositories.TransactionEntryRepository;
 import edu.uark.registerapp.models.repositories.TransactionRepository;
+import edu.uark.registerapp.models.repositories.ProductRepository;
 
 @Service
 public class TransactionEntryClearCommand implements VoidCommandInterface {
@@ -38,6 +39,9 @@ public class TransactionEntryClearCommand implements VoidCommandInterface {
         long total = 0;
         for(final TransactionEntryEntity transactionEntryEntity: transactionEntryRepository.findAll()){
             total = total + transactionEntryEntity.getPrice();
+            ProductEntity productEntity = productRepository.findById(transactionEntryEntity.getProductId()).get();
+            productEntity.setCount(productEntity.getCount() - (int)transactionEntryEntity.getQuantity());
+            productRepository.save(productEntity);
         }
 
         transactionRepository.save(
@@ -78,4 +82,7 @@ public class TransactionEntryClearCommand implements VoidCommandInterface {
 
     @Autowired
     private TransactionRepository transactionRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 }
