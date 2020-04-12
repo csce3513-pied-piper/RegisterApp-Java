@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import edu.uark.registerapp.commands.transactions.TransactionEntriesQuery;
+import edu.uark.registerapp.commands.employees.EmployeeQuery;
 import edu.uark.registerapp.controllers.enums.ViewModelNames;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.Product;
+import edu.uark.registerapp.models.api.Employee;
 import edu.uark.registerapp.models.entities.ActiveUserEntity;
 
 @Controller
@@ -41,8 +43,8 @@ public class TransactionRouteController extends BaseRouteController{
 						queryParameters);
 
 		modelAndView.addObject(
-				ViewModelNames.IS_ELEVATED_USER.getValue(),
-				this.isElevatedUser(activeUserEntity.get()));
+				ViewModelNames.EMPLOYEE.getValue(),
+				employeeQuery.setEmployeeId(activeUserEntity.get().getEmployeeId()).execute());
 
 		Pair<List<TransactionEntryEntity>, List<Product>> p = transactionEntriesQuery.execute();
 
@@ -60,4 +62,7 @@ public class TransactionRouteController extends BaseRouteController{
 	// Properties
 	@Autowired
 	private TransactionEntriesQuery transactionEntriesQuery;
+
+	@Autowired
+	private EmployeeQuery employeeQuery;
 }

@@ -77,6 +77,22 @@ public class TransactionRestController extends BaseRestController {
         return new ApiResponse();
     }
 
+    @RequestMapping(value = "/save/{cashierId}/{transactionReferenceId}", method = RequestMethod.POST)
+    public @ResponseBody ApiResponse createTransaction(
+            @PathVariable final UUID cashierId,
+            @PathVariable final UUID transactionReferenceId,
+            final HttpServletRequest request,
+            final HttpServletResponse response
+    ) {
+
+        this.transactionEntryClearCommand
+                .setCashierId(cashierId)
+                .setTransactionReferenceId(transactionReferenceId)
+                .save();
+
+        return new ApiResponse();
+    }
+
     // Properties
     @Autowired
     private TransactionEntryClearCommand transactionEntryClearCommand;

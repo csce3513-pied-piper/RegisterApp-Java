@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+	getCheckoutActionElement().addEventListener("click", saveTransaction);
 	//Cancel button functionality
 	getCancleActionElement().addEventListener("click", clear);
 		
@@ -60,7 +61,17 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 displayTotal();
 
-function checkoutActionClick(event) {}
+function saveTransaction() {
+	const cashierId = document.getElementById("employeeId").value;
+	const transactionReferenceId = document.getElementById("transactionReferenceId").value;
+	const saveActionUrl = ("/entity/transactionEntry/save/" + cashierId + "/" + transactionReferenceId);
+	const saveTransactionRequest = {
+		total: 0
+	};
+	ajaxPost(saveActionUrl, saveTransactionRequest, (callbackResponse) => {
+		if (isSuccessResponse(callbackResponse)) {window.location.replace("/transactionMenu");}
+	});
+}
 
 function displayTotal() {
 	const productListElements = document.getElementById("productsListing").children;
@@ -84,6 +95,10 @@ function getCancleActionElement(){
 
 function getSearchActionElement(){
 	return document.getElementById("searchButton");
+}
+
+function getCheckoutActionElement(){
+	return document.getElementById("checkoutButton");
 }
 
 function getLookUpCode(){

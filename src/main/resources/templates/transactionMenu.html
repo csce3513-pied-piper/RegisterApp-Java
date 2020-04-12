@@ -58,6 +58,9 @@
     </div>
 </div>
 
+<input type="hidden" id="employeeId" name="employeeId" th:value="${employee.id}" />
+<input type="hidden" id="transactionReferenceId" name="transactionReferenceId" th:value="${transactionEntries[0].transactionid}" />
+
 <div class="footer">
     <img id="signOutImage" src="/images/Sign-Out.png" alt="Sign Out" class="footer" />
 </div>
