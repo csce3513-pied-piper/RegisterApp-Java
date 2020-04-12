@@ -4,7 +4,59 @@ document.addEventListener("DOMContentLoaded", () => {
 		
 	getSearchActionElement().addEventListener(
 		"click",
-		() => { window.location.assign("/search/lookupcode=" + getLookUpCode()); });	
+		() => { window.location.assign("/search/lookupcode=" + getLookUpCode()); });
+
+	const productListElements = document.getElementById("productsListing").children;
+
+	for (let i = 0; i < productListElements.length; i++) {
+		const transactionEntryIdList = productListElements[i].getElementsByClassName("transactionEntryId");
+		const deleteBtnList = productListElements[i].getElementsByClassName("deleteBtn");
+		const plusBtnList = productListElements[i].getElementsByClassName("plusBtn");
+		const minusBtnList = productListElements[i].getElementsByClassName("minusBtn");
+		for (let j = 0; j < transactionEntryIdList.length; j++) {
+			deleteBtnList[j].addEventListener(
+				"click",
+				() => {
+					var deleteActionUrl = ("/entity/transactionEntry/delete/" + transactionEntryIdList[j].value);
+
+					ajaxDelete(deleteActionUrl, (callbackResponse) => {
+						if (isSuccessResponse(callbackResponse)) {
+							window.location.replace("/transactionMenu");
+						}
+					});
+				});
+
+			plusBtnList[j].addEventListener(
+				"click",
+				() => {
+					var saveActionUrl = ("/entity/transactionEntry/plus/" + transactionEntryIdList[j].value);
+					var saveTransactionEntryRequest = {
+						quantity: 1
+					};
+
+					ajaxPut(saveActionUrl, saveTransactionEntryRequest, (callbackResponse) => {
+						if (isSuccessResponse(callbackResponse)) {
+							window.location.replace("/transactionMenu");
+						}
+					});
+				});
+
+			minusBtnList[j].addEventListener(
+				"click",
+				() => {
+					var saveActionUrl = ("/entity/transactionEntry/minus/" + transactionEntryIdList[j].value);
+					var saveTransactionEntryRequest = {
+						quantity: -1
+					};
+
+					ajaxPut(saveActionUrl, saveTransactionEntryRequest, (callbackResponse) => {
+						if (isSuccessResponse(callbackResponse)) {
+							window.location.replace("/transactionMenu");
+						}
+					});
+				});
+		}
+	}
 })
 displayTotal();
 

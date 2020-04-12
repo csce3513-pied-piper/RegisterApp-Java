@@ -26,6 +26,19 @@ public class TransactionEntryClearCommand implements VoidCommandInterface {
         this.transactionEntryRepository.deleteAll();
     }
 
+    public void delete(){
+        this.transactionEntryRepository.deleteById(transactionEntryId);
+    }
+
+    private UUID transactionEntryId;
+    public UUID getTransactionEntryId() {
+        return this.transactionEntryId;
+    }
+    public TransactionEntryClearCommand setTransactionEntryId(final UUID transactionEntryId) {
+        this.transactionEntryId = transactionEntryId;
+        return this;
+    }
+
     @Autowired
     private TransactionEntryRepository transactionEntryRepository;
 }

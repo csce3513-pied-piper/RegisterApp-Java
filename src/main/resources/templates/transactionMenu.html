@@ -34,7 +34,7 @@
     <div class="productsWrapper">
         <ul id="productsListing" class="products">
         <li th:each="product : ${products}">
-            <input type="hidden" name="transactionEntryId" th:value="${transactionEntries[productStat.index].id}" />
+            <input type="hidden" class = "transactionEntryId" name="transactionEntryId" th:value="${transactionEntries[productStat.index].id}" />
             <input type="hidden" name="productId" th:value="${product.id}" />
             <input type="hidden" class = "price" name="price" th:value="${transactionEntries[productStat.index].price}" />
             <span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>

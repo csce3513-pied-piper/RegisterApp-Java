@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.uark.registerapp.commands.transactions.TransactionEntryClearCommand;
+import edu.uark.registerapp.commands.transactions.TransactionEntryIncrementCommand;
 import edu.uark.registerapp.controllers.enums.ViewNames;
 import edu.uark.registerapp.models.api.ApiResponse;
 import edu.uark.registerapp.models.api.Product;
@@ -34,7 +35,52 @@ public class TransactionRestController extends BaseRestController {
         return new ApiResponse();
     }
 
+    @RequestMapping(value = "/plus/{transactionEntryId}", method = RequestMethod.PUT)
+    public @ResponseBody ApiResponse plusTransactionEntry(
+            @PathVariable final UUID transactionEntryId,
+            final HttpServletRequest request,
+            final HttpServletResponse response
+    ) {
+
+        this.transactionEntryIncrementCommand
+                .setTransactionEntryId(transactionEntryId)
+                .plus();
+
+        return new ApiResponse();
+    }
+
+    @RequestMapping(value = "/minus/{transactionEntryId}", method = RequestMethod.PUT)
+    public @ResponseBody ApiResponse minusTransactionEntry(
+            @PathVariable final UUID transactionEntryId,
+            final HttpServletRequest request,
+            final HttpServletResponse response
+    ) {
+
+        this.transactionEntryIncrementCommand
+                .setTransactionEntryId(transactionEntryId)
+                .minus();
+
+        return new ApiResponse();
+    }
+
+    @RequestMapping(value = "/delete/{transactionEntryId}", method = RequestMethod.DELETE)
+    public @ResponseBody ApiResponse deleteTransactionEntry(
+            @PathVariable final UUID transactionEntryId,
+            final HttpServletRequest request,
+            final HttpServletResponse response
+    ) {
+
+        this.transactionEntryClearCommand
+                .setTransactionEntryId(transactionEntryId)
+                .delete();
+
+        return new ApiResponse();
+    }
+
     // Properties
     @Autowired
     private TransactionEntryClearCommand transactionEntryClearCommand;
+
+    @Autowired
+    private TransactionEntryIncrementCommand transactionEntryIncrementCommand;
 }
