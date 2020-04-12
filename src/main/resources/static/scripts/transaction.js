@@ -76,17 +76,20 @@ function saveTransaction() {
 function displayTotal() {
 	const productListElements = document.getElementById("productsListing").children;
 	var total = 0;
+	var count = 0;
 
 	for (let i = 0; i < productListElements.length; i++) {
 		var priceList = productListElements[i].getElementsByClassName("price");
+		var countList = productListElements[i].getElementsByClassName("count");
 		for (let j = 0; j < priceList.length; j++) {
 			total = parseInt(total) + parseInt(priceList[j].value);
+			count = parseInt(count) + parseInt(countList[j].value);
 		}
 	}
 
 	total = total/100;
 	total = total.toFixed(2);
-	document.getElementById("total").innerHTML = "$" + total;
+	document.getElementById("total").innerHTML = count + " items | " + "$" + total;
 }
 
 function getCancleActionElement(){

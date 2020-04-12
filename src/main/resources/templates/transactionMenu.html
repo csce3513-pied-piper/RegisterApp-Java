@@ -38,6 +38,7 @@
             <input type="hidden" class="transactionReferenceId" name="transactionReferenceId" th:value="${transactionEntries[productStat.index].transactionId}" />
             <input type="hidden" name="productId" th:value="${product.id}" />
             <input type="hidden" class = "price" name="price" th:value="${transactionEntries[productStat.index].price}" />
+            <input type="hidden" class = "count" name="count" th:value="${transactionEntries[productStat.index].quantity}" />
             <span class="productLookupCodeDisplay" th:text="${product.lookupCode}">lookupCode</span>
             <button style="float:right; border-radius: 50%; border: 1px solid black; background-color: lightcoral; cursor: pointer;" type="button" class="deleteBtn">⨯</button>
             <br />&nbsp;&nbsp;<span class="productPriceDisplay" th:text="${product.dollars}">$4.99</span>
