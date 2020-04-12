@@ -17,7 +17,7 @@ function displayTotal() {
 	for (let i = 0; i < productListElements.length; i++) {
 		var priceList = productListElements[i].getElementsByClassName("price");
 		for (let j = 0; j < priceList.length; j++) {
-			total = total + priceList[j].value;
+			total = parseInt(total) + parseInt(priceList[j].value);
 		}
 	}
 
