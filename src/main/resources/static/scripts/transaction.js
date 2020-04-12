@@ -12,7 +12,7 @@ function checkoutActionClick(event) {}
 
 function displayTotal() {
 	//const productListElements = document.getElementById("productsListing").children;
-	//var total = 350;
+	var total = 350;
 
 	/*for (let i = 0; i < productListElements.length; i++) {
 		var priceList = productListElements[i].getElementsByClassName("price");
@@ -21,9 +21,9 @@ function displayTotal() {
 		}
 	}*/
 
-	//total = total/100;
-	//total = total.toFixed(2);
-	document.getElementById("total").innerHTML = "$3.50";
+	total = total/100;
+	total = total.toFixed(2);
+	document.getElementById("total").innerHTML = "$" + total;
 }
 
 function getCancleActionElement(){
