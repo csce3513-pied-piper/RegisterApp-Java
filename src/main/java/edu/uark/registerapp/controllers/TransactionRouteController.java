@@ -56,7 +56,7 @@ public class TransactionRouteController extends BaseRouteController{
 				ViewModelNames.PRODUCTS.getValue(),
 				p.getValue());
 
-		return modelAndView;
+		return modelAndView; //Cleaned up a little
 	}
 
 	// Properties
